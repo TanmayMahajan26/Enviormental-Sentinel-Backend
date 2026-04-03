@@ -1,0 +1,11 @@
+fastapi==0.115.12
+uvicorn[standard]==0.34.2
+python-dotenv==1.1.0
+numpy==2.2.4
+pandas==2.2.3
+scikit-learn==1.6.1
+statsmodels==0.14.4
+google-genai==1.14.0
+httpx==0.28.1
+pydantic==2.11.1
+joblib==1.4.2
