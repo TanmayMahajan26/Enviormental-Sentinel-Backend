@@ -65,7 +65,8 @@ def _recency_score(anomalies: list[dict], reference_time: datetime = None) -> fl
     timestamps = []
     for a in anomalies:
         try:
-            ts = datetime.fromisoformat(str(a["timestamp"]).replace("Z", ""))
+            ts_str = str(a["timestamp"]).replace("Z", "")
+            ts = datetime.fromisoformat(ts_str).replace(tzinfo=None)
             timestamps.append(ts)
         except (ValueError, TypeError):
             pass
@@ -74,6 +75,9 @@ def _recency_score(anomalies: list[dict], reference_time: datetime = None) -> fl
         return 0.0
 
     most_recent = max(timestamps)
+
+    # Ensure reference_time is naive
+    reference_time = reference_time.replace(tzinfo=None)
 
     # Use the last data point as reference (since we're working with historical data)
     # Score: 1.0 if within last day, decays exponentially
@@ -254,7 +258,7 @@ def _should_suppress(zone_id: str, priority_score: float,
             try:
                 alert_time = datetime.fromisoformat(
                     str(alert.get("created_at", alert["timestamp"])).replace("Z", "")
-                )
+                ).replace(tzinfo=None)
                 hours_since = (now - alert_time).total_seconds() / 3600
                 if hours_since < ALERT_COOLDOWN_HOURS:
                     # Allow if new score is significantly higher
@@ -302,7 +306,7 @@ def evaluate_and_prioritize() -> list[dict]:
         # Get the last reading timestamp as reference
         readings = db.get_all_readings_for_zone(zone_id)
         if readings:
-            ref_time = datetime.fromisoformat(str(readings[-1]["timestamp"]))
+            ref_time = datetime.fromisoformat(str(readings[-1]["timestamp"])).replace(tzinfo=None)
         else:
             ref_time = datetime.utcnow()
 
