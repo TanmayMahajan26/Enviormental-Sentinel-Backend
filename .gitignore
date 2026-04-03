@@ -1,0 +1,22 @@
+# Environment Variables
+.env
+.env.local
+
+# Python standard exclusions
+__pycache__/
+*.pyc
+
+# Database files
+*.db
+*.sqlite
+*.sqlite3
+
+# Cached ML Models
+*.pkl
+
+# Test files
+test_*.py
+
+# Virtual environments
+venv/
+env/
