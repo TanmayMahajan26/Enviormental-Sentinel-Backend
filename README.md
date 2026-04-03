@@ -132,6 +132,31 @@ Once booted, navigate to `http://localhost:8000/docs` to test any of the 30+ int
 | `/api/incident/{alert_id}` | `GET` | Download a highly structured, submission-ready incident report. |
 | `/api/briefing/{language}` | `GET` | Retrieve the localized executive summary. |
 
+### 🧑‍💻 Test the API via Terminal (PowerShell)
+
+If you don't want to use the Swagger UI, you can test the APIs directly from your PowerShell terminal with these copy-paste commands:
+
+```powershell
+# 1. Active Alerts
+Invoke-RestMethod http://localhost:8000/api/alerts | ConvertTo-Json -Depth 3
+
+# 2. What-If Simulation 🧪
+$body = '{"zone_id":"zone_mumbai","scenario":{"sst":2.0,"chlorophyll":1.5}}'
+Invoke-RestMethod http://localhost:8000/api/simulate -Method Post -Body $body -ContentType "application/json" | ConvertTo-Json -Depth 3
+
+# 3. Root Cause AI 🧬
+Invoke-RestMethod http://localhost:8000/api/rootcause/zone_mumbai | ConvertTo-Json -Depth 3
+
+# 4. Time-to-Risk Early Warning ⏰
+Invoke-RestMethod http://localhost:8000/api/time-to-risk/zone_mumbai | ConvertTo-Json -Depth 3
+
+# 5. Native Language Briefing (Hindi) 🌐
+Invoke-RestMethod http://localhost:8000/api/briefing/hindi | ConvertTo-Json -Depth 3
+
+# 6. View Agent Brain Logs 🤖
+Invoke-RestMethod http://localhost:8000/api/agent-logs | ConvertTo-Json -Depth 3
+```
+
 ---
 
 ## 📊 Monitored Indian Coastal Zones
