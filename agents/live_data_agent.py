@@ -51,23 +51,22 @@ async def fetch_noaa_sst(lat: float, lng: float, timeout: float = 30.0) -> Optio
     lat_min, lat_max = lat - 0.1, lat + 0.1
     lng_min, lng_max = lng - 0.1, lng + 0.1
 
-    end_date = datetime.now(timezone.utc).strftime("%Y-%m-%dT12:00:00Z")
-    start_date = (datetime.now(timezone.utc) - timedelta(days=7)).strftime("%Y-%m-%dT12:00:00Z")
-
     # Try multiple ERDDAP datasets/servers in order of preference
+    # We use (last-2):1:(last) to instantly fetch the most recent data without searching dates
     sst_urls = [
         # 1. CoastWatch new server — NOAA OI SST v2.1 (daily, 0.25°)
         f"https://coastwatch.noaa.gov/erddap/griddap/ncdcOisst21Agg.json"
-        f"?sst[({start_date}):1:({end_date})][({lat_min}):1:({lat_max})][({lng_min}):1:({lng_max})]",
+        f"?sst[(last-2):1:(last)][({lat_min}):1:({lat_max})][({lng_min}):1:({lng_max})]",
         # 2. Fallback: JPL MUR SST on new CoastWatch server
         f"https://coastwatch.noaa.gov/erddap/griddap/jplMURSST41.json"
-        f"?analysed_sst[({start_date}):1:({end_date})][({lat_min}):1:({lat_max})][({lng_min}):1:({lng_max})]",
+        f"?analysed_sst[(last-2):1:(last)][({lat_min}):1:({lat_max})][({lng_min}):1:({lng_max})]",
         # 3. Fallback: Open-Meteo sea surface temperature (always works)
     ]
 
     for url in sst_urls:
         try:
-            async with httpx.AsyncClient(timeout=timeout, follow_redirects=True) as client:
+            # Extended timeout to 45s for ERDDAP backend cold starts
+            async with httpx.AsyncClient(timeout=45.0, follow_redirects=True) as client:
                 resp = await client.get(url)
                 resp.raise_for_status()
                 data = resp.json()
@@ -106,22 +105,21 @@ async def fetch_noaa_chlorophyll(lat: float, lng: float, timeout: float = 30.0) 
     lat_min, lat_max = lat - 0.1, lat + 0.1
     lng_min, lng_max = lng - 0.1, lng + 0.1
 
-    end_date = datetime.now(timezone.utc).strftime("%Y-%m-%dT00:00:00Z")
-    start_date = (datetime.now(timezone.utc) - timedelta(days=14)).strftime("%Y-%m-%dT00:00:00Z")
-
-    # Multiple dataset/server fallbacks
+    # Multiple dataset/server fallbacks 
+    # Use (last-2):1:(last) to drastically speed up query times and avoid ReadTimeout
     chl_urls = [
         # 1. New CoastWatch server (redirected location)
         f"https://coastwatch.noaa.gov/erddap/griddap/noaacwNPPVIIRSSQchlaWeekly.json"
-        f"?chlor_a[({start_date}):1:({end_date})][({lat_min}):1:({lat_max})][({lng_min}):1:({lng_max})]",
+        f"?chlor_a[(last-2):1:(last)][({lat_min}):1:({lat_max})][({lng_min}):1:({lng_max})]",
         # 2. Old PFEG server (will follow redirect if needed)
         f"https://coastwatch.pfeg.noaa.gov/erddap/griddap/nesdisVHNSQchlaWeekly.json"
-        f"?chlor_a[({start_date}):1:({end_date})][({lat_min}):1:({lat_max})][({lng_min}):1:({lng_max})]",
+        f"?chlor_a[(last-2):1:(last)][({lat_min}):1:({lat_max})][({lng_min}):1:({lng_max})]",
     ]
 
     for url in chl_urls:
         try:
-            async with httpx.AsyncClient(timeout=timeout, follow_redirects=True) as client:
+            # Extended timeout to 45s for ERDDAP backend cold starts
+            async with httpx.AsyncClient(timeout=45.0, follow_redirects=True) as client:
                 resp = await client.get(url)
                 resp.raise_for_status()
                 data = resp.json()
