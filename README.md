@@ -1,8 +1,8 @@
 <div align="center">
   <img src="https://img.shields.io/badge/Status-Hackathon--Ready-success.svg?style=for-the-badge" alt="Status" />
   <img src="https://img.shields.io/badge/Python-3.10%2B-blue.svg?style=for-the-badge" alt="Python" />
-  <img src="https://img.shields.io/badge/FastAPI-0.115%2B-00a393.svg?style=for-the-badge" alt="FastAPI" />
-  <img src="https://img.shields.io/badge/AI-Gemini%203%20Flash-orange.svg?style=for-the-badge" alt="AI" />
+  <img src="https://img.shields.io/badge/Streamlit-1.42%2B-ff4b4b.svg?style=for-the-badge" alt="Streamlit" />
+  <img src="https://img.shields.io/badge/AI-Gemini%202.5%20Flash-orange.svg?style=for-the-badge" alt="AI" />
   <h1>🌍 Airavat 3.0: Environmental Sentinel</h1>
   <p><b>A 10-Agent Cognitive Intelligence Engine for Real-Time Marine Crisis Detection & Decision Support.</b></p>
 </div>
@@ -30,22 +30,23 @@ Our proprietary architecture uses specialized AI agents that "collaborate" to so
 
 ---
 
-## 🧪 Hackathon Demo: The Anomaly Simulation
-To demonstrate the full power of the AI pipeline to judges, we have included a **Simulation Engine**. This bypasses steady-state monitoring and injects a realistic 48-hour marine heatwave crisis into the system.
+## 🖥️ Hackathon Demo: Mission Control (Streamlit)
+To demonstrate the full power of the AI pipeline to judges, we have included a **High-Fidelity Web Simulation Dashboard**. This web app bypasses steady-state monitoring and injects a realistic 48-hour marine heatwave crisis into the system, visualizing the multi-agent reasoning chain live.
 
-### How to Run the Demo:
+### How to Run the Simulation:
 ```bash
-python simulate_anomaly.py
+# 1. Install dependencies
+pip install -r requirements.txt
+
+# 2. Launch the Mission Control Dashboard
+python -m streamlit run simulation_app.py
 ```
 
 **What the Judges Will See:**
-1.  **Injection**: 48 hours of escalating crisis data (SST spike, Wind stagnation, pH drop).
-2.  **Detection**: Analysis Agents immediately flags the signatures as high-z-score anomalies.
-3.  **Prioritization**: Decision Agent generates a **CRITICAL** alert with a 1.0/1.0 priority score.
-4.  **Propagation**: Cascade Agent predicts risk to neighboring zones (Goa, Gulf of Kutch).
-5.  **Impact**: Impact Agent estimates ₹ Crore damage and fishing family vulnerability.
-6.  **Reasoning**: Root Cause Agent identifies the "WHY" (e.g., Solar heating + Wind nullification).
-7.  **Early Warning**: Time-to-Risk calculates exactly when thresholds will hit "Non-Recoverable" levels.
+1.  **🚨 Inject Anomaly**: A big red button to trigger a 48-hour crisis (SST spike, Wind stagnation, pH drop).
+2.  **🧠 Reasoning Chain**: A live, scrollable feed showing exactly what each of the 10 agents is thinking.
+3.  **📊 Visual Intelligence**: Real-time Plotly gauges for Risk Level and bar charts for Socio-Economic Impact (₹ Crore).
+4.  **⏰ Early Warning**: Time-to-Risk calculates exactly when thresholds will hit "Non-Recoverable" levels.
 
 ---
 
@@ -66,11 +67,11 @@ TELEGRAM_CHAT_ID=your_id
 
 ### 3. Quick Start
 ```bash
-# Install dependencies
-pip install -r requirements.txt
-
-# Start the Sentinel Server
+# 1. Start the Sentinel Backend Server
 python main.py
+
+# 2. Open the Simulation Dashboard (New Terminal)
+python -m streamlit run simulation_app.py
 ```
 
 ---
