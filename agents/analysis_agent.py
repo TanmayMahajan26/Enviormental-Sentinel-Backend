@@ -265,10 +265,10 @@ def train_zone_model(zone_id: str) -> dict:
     return {
         "zone_id": zone_id,
         "status": "trained",
-        "total_points": len(X),
-        "features": X.shape[1],
-        "anomalies_detected": anomaly_count,
-        "anomaly_rate": round(anomaly_count / len(X) * 100, 2),
+        "total_points": int(len(X)),
+        "features": int(X.shape[1]),
+        "anomalies_detected": int(anomaly_count),
+        "anomaly_rate": float(round(anomaly_count / len(X) * 100, 2)),
     }
 
 

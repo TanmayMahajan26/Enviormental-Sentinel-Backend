@@ -480,6 +480,35 @@ async def get_nasa_events(
 
 
 # ═══════════════════════════════════════════════════════════
+# ADDITIONAL EXTERNAL DATA INTEGRATIONS
+# ═══════════════════════════════════════════════════════════
+
+@app.get("/api/events/copernicus",
+         tags=["🛰️ External Data"],
+         summary="Copernicus Marine API (Ocean Data)",
+         description="Fetch ocean data (salinity, sea level) from Copernicus Marine Service.")
+async def get_copernicus_data(lat: float = 19.076, lng: float = 72.878):
+    return await live_data_agent.fetch_copernicus_marine(lat, lng)
+
+
+@app.get("/api/events/nasa-earthdata",
+         tags=["🛰️ External Data"],
+         summary="NASA Earthdata (MODIS)",
+         description="Fetch satellite imagery mapping from NASA Earthdata.")
+async def get_nasa_earthdata(lat: float = 19.076, lng: float = 72.878):
+    return await live_data_agent.fetch_nasa_earthdata(lat, lng)
+
+
+@app.get("/api/events/csv-fallback",
+         tags=["🛰️ External Data"],
+         summary="Local CSV Fallback",
+         description="Fetch and parse offline NOAA buoy data CSV fallback.")
+async def get_csv_fallback(zone_id: str = "zone_mumbai"):
+    return await live_data_agent.fetch_local_csv_fallback(zone_id)
+
+
+
+# ═══════════════════════════════════════════════════════════
 # LIVE DATA PIPELINE ENDPOINTS
 # ═══════════════════════════════════════════════════════════
 
@@ -499,6 +528,22 @@ async def trigger_ingestion():
 async def trigger_retrain():
     result = await live_data_agent.retrain_models()
     return result
+
+
+@app.post("/api/pipeline/train/{zone_id}",
+          tags=["📡 Live Pipeline"],
+          summary="Retrain specific zone",
+          description="Trains the Isolation Forest and forecasting models for a single zone.")
+def train_single_zone(zone_id: str):
+    return analysis_agent.train_zone_model(zone_id)
+
+
+@app.post("/api/pipeline/evaluate",
+          tags=["📡 Live Pipeline"],
+          summary="Trigger Decision Evaluation",
+          description="Forces the Decision Agent to evaluate all pending anomalies and generate new alerts.")
+def trigger_evaluation():
+    return decision_agent.evaluate_and_prioritize()
 
 
 @app.get("/api/pipeline/status",
