@@ -11,6 +11,7 @@ GEMINI_API_KEY = os.getenv("GEMINI_API_KEY", "")
 NASA_API_KEY = os.getenv("NASA_API_KEY", "DEMO_KEY")  # free demo key works
 
 # --- Database ---
+DATABASE_URL = os.getenv("DATABASE_URL")  # if present, uses PostgreSQL/Neon
 DB_PATH = os.path.join(os.path.dirname(__file__), "data", "sentinel.db")
 MODELS_DIR = os.path.join(os.path.dirname(__file__), "data", "models")
 
