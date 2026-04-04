@@ -151,7 +151,13 @@ def init_db():
     ]
     
     for q in queries:
-        cursor.execute(q)
+        try:
+            cursor.execute(q)
+        except Exception as e:
+            # If workers race to create tables, ignore "already exists" or concurrency errors
+            if "already exists" in str(e).lower() or "unique_violation" in str(e).lower():
+                continue
+            raise e
 
     # Indexes
     if not is_pg:
