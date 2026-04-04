@@ -26,7 +26,7 @@
   --radius:    10px;
   --radius-sm: 6px;
 }
-html{scroll-behavior:smooth}
+html{scroll-behavior:smooth;color-scheme:dark}
 body{font-family:var(--font);background:var(--bg);color:var(--text);min-height:100vh;line-height:1.55;-webkit-font-smoothing:antialiased}
 a{color:var(--gold);text-decoration:none}
 ::selection{background:rgba(200,164,78,0.3)}
@@ -175,7 +175,8 @@ main{max-width:1400px;margin:0 auto;padding:24px}
 .sim-params{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:12px;margin-bottom:20px}
 .sim-params input,.sim-row select{padding:8px 12px;background:var(--bg-input);border:1px solid var(--border);border-radius:var(--radius-sm);color:var(--text);font-family:var(--mono);font-size:.85rem;outline:none;width:100%;transition:border-color .2s}
 .sim-params input:focus,.sim-row select:focus{border-color:var(--gold)}
-.sim-row select{cursor:pointer}
+.sim-row select{cursor:pointer;color-scheme:dark}
+.sim-row select option{background:#1a1d28;color:rgba(255,255,255,0.92);padding:8px}
 .btn-primary{display:inline-flex;align-items:center;gap:6px;padding:10px 24px;background:linear-gradient(135deg,var(--gold),var(--gold2));color:#0a0a0a;border:none;border-radius:var(--radius);font-family:var(--font);font-size:.85rem;font-weight:600;cursor:pointer;transition:all .2s}
 .btn-primary:hover{transform:translateY(-1px);box-shadow:0 4px 16px rgba(200,164,78,0.3)}
 .btn-primary:disabled{opacity:.5;cursor:not-allowed;transform:none}
@@ -201,8 +202,9 @@ main{max-width:1400px;margin:0 auto;padding:24px}
 
 /* ── INCIDENTS ── */
 .inc-select{margin-bottom:20px}
-.inc-select select{padding:8px 14px;background:var(--bg-input);border:1px solid var(--border);border-radius:var(--radius-sm);color:var(--text);font-family:var(--font);font-size:.85rem;outline:none;cursor:pointer;min-width:300px}
+.inc-select select{padding:8px 14px;background:var(--bg-input);border:1px solid var(--border);border-radius:var(--radius-sm);color:var(--text);font-family:var(--font);font-size:.85rem;outline:none;cursor:pointer;min-width:300px;color-scheme:dark}
 .inc-select select:focus{border-color:var(--gold)}
+.inc-select select option{background:#1a1d28;color:rgba(255,255,255,0.92);padding:8px}
 .ir-report{background:var(--bg-card);border:1px solid var(--border-gold);border-radius:var(--radius);padding:28px}
 .ir-id{font-family:var(--mono);font-size:1.2rem;font-weight:700;color:var(--gold)}
 .ir-class{display:inline-block;margin-left:12px}
