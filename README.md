@@ -1,10 +1,10 @@
 <div align="center">
-  <img src="https://img.shields.io/badge/Status-Active-success.svg?style=for-the-badge" alt="Status" />
+  <img src="https://img.shields.io/badge/Status-Hackathon--Ready-success.svg?style=for-the-badge" alt="Status" />
   <img src="https://img.shields.io/badge/Python-3.10%2B-blue.svg?style=for-the-badge" alt="Python" />
-  <img src="https://img.shields.io/badge/FastAPI-0.104%2B-00a393.svg?style=for-the-badge" alt="FastAPI" />
-  <img src="https://img.shields.io/badge/AI-Gemini%20Flash-orange.svg?style=for-the-badge" alt="AI" />
-  <h1>🌍 AI-Powered Environmental Sentinel</h1>
-  <p>A cognitive, agentic decision-support engine for coastal and marine environments.</p>
+  <img src="https://img.shields.io/badge/Streamlit-1.42%2B-ff4b4b.svg?style=for-the-badge" alt="Streamlit" />
+  <img src="https://img.shields.io/badge/AI-Gemini%202.5%20Flash-orange.svg?style=for-the-badge" alt="AI" />
+  <h1>🌍 Airavat 3.0: Environmental Sentinel</h1>
+  <p><b>A 10-Agent Cognitive Intelligence Engine for Real-Time Marine Crisis Detection & Decision Support.</b></p>
 </div>
 
 <br />
@@ -17,7 +17,7 @@ Instead of overwhelming administrators with raw data, it acts as an **expert ana
 
 ## 🌟 Executive Summary of Features
 
-We have built a proprietary **9-Agent AI Architecture** designed exclusively around processing continuous geospatial and environmental data natively natively without user prompting.
+We have built a proprietary **10-Agent AI Architecture** designed exclusively around processing continuous geospatial and environmental data natively natively without user prompting.
 
 ### 🧠 1. Cognitive "100x Impact" Capabilities
 *   **🧪 What-If Simulation Engine**: Allows policy-makers to simulate hypothetical scenarios (e.g., `"What happens to coastal zones if the Sea Surface Temperature rises by 1.5°C today?"`). The engine calculates downstream propagation risks and ecosystem shock thresholds.
@@ -59,6 +59,26 @@ graph TD
 
 ---
 
+## 🖥️ Hackathon Demo: Mission Control (Streamlit)
+To demonstrate the full power of the AI pipeline to judges, we have included a **High-Fidelity Web Simulation Dashboard**. This web app bypasses steady-state monitoring and injects a realistic 48-hour marine heatwave crisis into the system, visualizing the multi-agent reasoning chain live.
+
+### How to Run the Simulation:
+```bash
+# 1. Install dependencies
+pip install -r requirements.txt
+
+# 2. Launch the Mission Control Dashboard
+python -m streamlit run simulation_app.py
+```
+
+**What the Judges Will See:**
+1.  **🚨 Inject Anomaly**: A big red button to trigger a 48-hour crisis (SST spike, Wind stagnation, pH drop).
+2.  **🧠 Reasoning Chain**: A live, scrollable feed showing exactly what each of the 10 agents is thinking.
+3.  **📊 Visual Intelligence**: Real-time Plotly gauges for Risk Level and bar charts for Socio-Economic Impact (₹ Crore).
+4.  **⏰ Early Warning**: Time-to-Risk calculates exactly when thresholds will hit "Non-Recoverable" levels.
+
+---
+
 ## 🛠️ Installation & Deployment
 
 This application operates primarily as a specialized Headless API, serving payloads capable of driving complex frontends.
@@ -73,10 +93,6 @@ This application operates primarily as a specialized Headless API, serving paylo
 ```bash
 # Clone repository
 git clone <your-repository-url>
-cd backend
-
-# Create isolated python environment (optional but recommended)
-python -m venv venv
 # On Windows:
 venv\Scripts\activate
 # On Mac/Linux:
@@ -108,7 +124,11 @@ PORT=8000
 ### 4. Boot the Sentinel!
 
 ```bash
+# Option 1: Start the Sentinel Server
 python main.py
+
+# Option 2: Start the Innovation Simulation (Streamlit)
+python -m streamlit run simulation_app.py
 ```
 *Note: On first startup, the Data Agent will immediately jump into a bootstrap cycle, fetching initial multi-API metrics and training the localized ML configurations for all 8 Indian coastline grids.*
 
@@ -123,7 +143,7 @@ Once booted, navigate to `http://localhost:8000/docs` to test any of the 30+ int
 ### High Output Intelligence Endpoints
 
 | Endpoint | Method | Purpose |
-| :--- | :---: | :--- |
+| :--- | :--- | :--- |
 | `/api/simulate` | `POST` | The **What-If** parameter interface. Pass scenarios like high SST shifts. |
 | `/api/rootcause/{zone_id}` | `GET` | Calculate algorithmic causal likelihoods based on parameter patterns. |
 | `/api/time-to-risk/{zone_id}`| `GET` | Fetch rolling linear trend projections to threshold breaches. |
