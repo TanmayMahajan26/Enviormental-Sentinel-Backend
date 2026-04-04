@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>EcoSentinel — AI-Powered Environmental Intelligence</title>
+  <meta name="description" content="An autonomous geospatial intelligence engine for coastal environmental monitoring across 8 Indian coastal zones." />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌍</text></svg>" />
+  <link rel="stylesheet" href="/static/landing.css" />
+  <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav class="navbar" id="navbar">
+    <div class="container">
+      <a href="#" class="nav-brand">
+        <div class="brand-icon"><svg class="icon"><use href="#icon-globe"/></svg></div>
+        <span>EcoSentinel</span>
+      </a>
+      <ul class="nav-links" id="nav-links">
+        <li><a href="#problem">Problem</a></li>
+        <li><a href="#dashboard">Dashboard</a></li>
+        <li><a href="#capabilities">Capabilities</a></li>
+        <li><a href="#zones">Zones</a></li>
+        <li><a href="#faq">FAQ</a></li>
+      </ul>
+      <div class="nav-cta">
+        <a href="/app" class="btn btn-primary">Launch Dashboard →</a>
+      </div>
+      <button class="hamburger" id="hamburger" aria-label="Toggle menu"><span></span><span></span><span></span></button>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero" id="hero">
+    <div class="hero-content">
+      <div class="hero-badge"><span class="badge-dot"></span>AI-Powered Environmental Intelligence</div>
+      <h1 class="hero-title">Stop chasing alerts.<br/>Start <span class="gradient-text">preventing crises.</span></h1>
+      <p class="hero-description">An autonomous intelligence engine that ingests satellite data, detects anomalies before they escalate, and delivers actionable coastal intelligence — so environmental teams never miss a slow-building crisis again.</p>
+      <div class="hero-actions">
+        <a href="/app" class="btn btn-primary"><i data-lucide="rocket" class="icon icon-sm"></i> Launch Live Dashboard</a>
+        <a href="#capabilities" class="btn btn-outline-gold"><i data-lucide="layers" class="icon icon-sm"></i> How It Works</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- STATS -->
+  <section class="stats-bar" id="stats">
+    <div class="container">
+      <div class="stats-grid">
+        <div class="stat-item animate-on-scroll"><div class="stat-number" data-target="8">0</div><div class="stat-label">Coastal Zones Monitored</div></div>
+        <div class="stat-item animate-on-scroll animate-delay-1"><div class="stat-number" data-target="5">0</div><div class="stat-label">Environmental Signals</div></div>
+        <div class="stat-item animate-on-scroll animate-delay-2"><div class="stat-number" data-target="9">0</div><div class="stat-label">Autonomous Agents</div></div>
+        <div class="stat-item animate-on-scroll animate-delay-3"><div class="stat-number" data-target="90" data-suffix="-day">0</div><div class="stat-label">Rolling Analysis Window</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROBLEM SECTION -->
+  <section class="problem-section section" id="problem">
+    <div class="container">
+      <div class="problem-grid">
+        <div class="problem-text animate-on-scroll">
+          <div class="section-label"><span class="label-dot"></span>The Problem</div>
+          <div class="problem-quote">"We pull reports from three different portals, manually compare satellite snapshots, and still miss the anomalies that precede a crisis. Threshold alerts fire too late or too often — they've become noise we've learned to ignore."</div>
+          <div class="problem-name">Environmental Monitoring Teams</div>
+          <div class="problem-role">Marine analysts, coastal administrators, fisheries regulators, conservation NGOs</div>
+          <div class="problem-pain-points">
+            <div class="pain-point"><i data-lucide="alert-triangle" class="icon"></i><p>Threshold alerts fire too late or too often, causing operator fatigue</p></div>
+            <div class="pain-point"><i data-lucide="database" class="icon"></i><p>Overwhelming volume of Earth observation data with no coherent synthesis</p></div>
+            <div class="pain-point"><i data-lucide="clock" class="icon"></i><p>Slow-building anomalies missed because static rules can't model temporal drift</p></div>
+          </div>
+        </div>
+        <div class="problem-visual animate-on-scroll animate-delay-2">
+          <div class="problem-visual-inner">
+            <div style="font-size:0.72rem;color:var(--text-tertiary);text-transform:uppercase;letter-spacing:1px;margin-bottom:20px;display:flex;align-items:center;gap:8px;"><i data-lucide="trending-up" class="icon icon-sm" style="color:var(--critical)"></i> Traditional Monitoring</div>
+            <div style="display:flex;flex-direction:column;gap:10px;">
+              <div style="padding:14px 16px;background:rgba(239,68,68,0.06);border:1px solid rgba(239,68,68,0.12);border-radius:8px;display:flex;align-items:center;gap:12px;"><i data-lucide="bell" class="icon icon-sm" style="color:var(--critical)"></i><span style="font-size:0.85rem;color:var(--text-secondary);flex:1;">SST Alert — Mumbai Coast (+0.3°C)</span><span style="font-size:0.68rem;color:var(--text-tertiary);font-family:'JetBrains Mono',monospace;">2h ago</span></div>
+              <div style="padding:14px 16px;background:rgba(249,115,22,0.06);border:1px solid rgba(249,115,22,0.12);border-radius:8px;display:flex;align-items:center;gap:12px;"><i data-lucide="bell" class="icon icon-sm" style="color:var(--high)"></i><span style="font-size:0.85rem;color:var(--text-secondary);flex:1;">SST Alert — Mumbai Coast (+0.3°C)</span><span style="font-size:0.68rem;color:var(--text-tertiary);font-family:'JetBrains Mono',monospace;">4h ago</span></div>
+              <div style="padding:14px 16px;background:rgba(249,115,22,0.06);border:1px solid rgba(249,115,22,0.12);border-radius:8px;display:flex;align-items:center;gap:12px;opacity:0.6;"><i data-lucide="bell-off" class="icon icon-sm" style="color:var(--text-tertiary)"></i><span style="font-size:0.85rem;color:var(--text-tertiary);flex:1;">SST Alert — Mumbai Coast (+0.2°C)</span><span style="font-size:0.68rem;color:var(--text-tertiary);">8h ago</span></div>
+              <div style="padding:14px 16px;background:rgba(0,0,0,0.3);border:1px solid var(--border-subtle);border-radius:8px;display:flex;align-items:center;gap:12px;opacity:0.4;"><i data-lucide="bell-off" class="icon icon-sm" style="color:var(--text-tertiary)"></i><span style="font-size:0.85rem;color:var(--text-tertiary);flex:1;">...12 more duplicate alerts today</span></div>
+            </div>
+            <div style="margin-top:20px;padding:14px 16px;background:rgba(200,164,78,0.06);border:1px solid var(--border-gold);border-radius:8px;">
+              <div style="font-size:0.72rem;color:var(--text-gold);text-transform:uppercase;letter-spacing:1px;margin-bottom:6px;display:flex;align-items:center;gap:6px;"><i data-lucide="sparkles" class="icon icon-sm"></i> What EcoSentinel Shows Instead</div>
+              <div style="font-size:0.85rem;color:var(--text-secondary);line-height:1.6;"><strong style="color:var(--text-primary);">1 actionable insight:</strong> "Slow thermal accumulation building for 8 days in Mumbai — SST +1.2°C above baseline with declining wind. 78% probability of coral stress event within 72 hours."</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="section-divider" />
+
+  <!-- LIVE DASHBOARD -->
+  <section class="dashboard-section section" id="dashboard">
+    <div class="container">
+      <div class="dashboard-header">
+        <div class="section-label"><span class="label-dot"></span>Live Intelligence</div>
+        <h2 class="section-title">Real-time situational<br/><span class="gradient-text">awareness at a glance</span></h2>
+        <p class="section-subtitle">Continuous multivariate geophysical signals across all monitored zones — summarized, prioritized, and explained by AI.</p>
+      </div>
+
+      <!-- ── ZONE STATUS — 8 COASTAL ZONES ── -->
+      <div class="zone-status-panel animate-on-scroll">
+        <div class="zone-status-header">
+          <div>
+            <div class="zone-status-title"><i data-lucide="radar" class="icon"></i> 8 Indian Coastal Zones Under Watch</div>
+            <div class="zone-status-subtitle">Real-time risk assessment across Arabian Sea, Bay of Bengal, and Indian Ocean</div>
+          </div>
+          <div class="zone-risk-summary"><span class="risk-count critical-count"><i data-lucide="alert-circle" class="icon icon-sm"></i> 2 Critical</span><span class="risk-count warning-count"><i data-lucide="alert-triangle" class="icon icon-sm"></i> 1 Warning</span><span class="risk-count ok-count"><i data-lucide="check-circle" class="icon icon-sm"></i> 5 Normal</span></div>
+        </div>
+        <div class="zone-status-grid">
+          <!-- Mumbai -->
+          <div class="zone-status-card status-critical">
+            <div class="zs-top">
+              <div class="zs-name-row"><i data-lucide="map-pin" class="icon icon-sm"></i><h4>Mumbai Coast</h4></div>
+              <span class="zs-badge critical">CRITICAL</span>
+            </div>
+            <div class="zs-region"><i data-lucide="compass" class="icon icon-sm"></i>Arabian Sea · 19.08°N, 72.88°E</div>
+            <div class="zs-signals">
+              <div class="zs-sig"><span class="zs-sig-label">SST</span><span class="zs-sig-val" style="color:#ef4444;">28.4°C ↑</span></div>
+              <div class="zs-sig"><span class="zs-sig-label">Chl-a</span><span class="zs-sig-val">3.2</span></div>
+              <div class="zs-sig"><span class="zs-sig-label">Wind</span><span class="zs-sig-val" style="color:#3b82f6;">5.8 ↓</span></div>
+              <div class="zs-sig"><span class="zs-sig-label">pH</span><span class="zs-sig-val">8.12</span></div>
+            </div>
+            <div class="zs-risk-bar"><div class="zs-risk-fill" style="width:92%;background:linear-gradient(90deg,#dc2626,#ef4444);"></div></div>
+            <div class="zs-risk-meta"><span>Risk Score</span><span class="zs-risk-value" style="color:var(--critical);">0.92</span></div>
+          </div>
+          <!-- Sundarbans -->
+          <div class="zone-status-card status-critical">
+            <div class="zs-top">
+              <div class="zs-name-row"><i data-lucide="map-pin" class="icon icon-sm"></i><h4>Sundarbans Delta</h4></div>
+              <span class="zs-badge critical">CRITICAL</span>
+            </div>
+            <div class="zs-region"><i data-lucide="compass" class="icon icon-sm"></i>Bay of Bengal · 21.94°N, 88.87°E</div>
+            <div class="zs-signals">
+              <div class="zs-sig"><span class="zs-sig-label">SST</span><span class="zs-sig-val" style="color:#f97316;">29.1°C ↑</span></div>
+              <div class="zs-sig"><span class="zs-sig-label">Chl-a</span><span class="zs-sig-val" style="color:#ef4444;">5.8 ↑</span></div>
+              <div class="zs-sig"><span class="zs-sig-label">Wind</span><span class="zs-sig-val">7.2</span></div>
+              <div class="zs-sig"><span class="zs-sig-label">pH</span><span class="zs-sig-val">8.04</span></div>
+            </div>
+            <div class="zs-risk-bar"><div class="zs-risk-fill" style="width:87%;background:linear-gradient(90deg,#dc2626,#ef4444);"></div></div>
+            <div class="zs-risk-meta"><span>Risk Score</span><span class="zs-risk-value" style="color:var(--critical);">0.87</span></div>
+          </div>
+          <!-- Gulf of Kutch -->
+          <div class="zone-status-card status-warning">
+            <div class="zs-top">
+              <div class="zs-name-row"><i data-lucide="map-pin" class="icon icon-sm"></i><h4>Gulf of Kutch</h4></div>
+              <span class="zs-badge warning">WARNING</span>
+            </div>
+            <div class="zs-region"><i data-lucide="compass" class="icon icon-sm"></i>Arabian Sea · 22.47°N, 69.08°E</div>
+            <div class="zs-signals">
+              <div class="zs-sig"><span class="zs-sig-label">SST</span><span class="zs-sig-val">26.2°C</span></div>
+              <div class="zs-sig"><span class="zs-sig-label">Chl-a</span><span class="zs-sig-val">2.1</span></div>
+              <div class="zs-sig"><span class="zs-sig-label">Wind</span><span class="zs-sig-val">8.4</span></div>
+              <div class="zs-sig"><span class="zs-sig-label">pH</span><span class="zs-sig-val" style="color:#f97316;">7.94 ↓</span></div>
+            </div>
+            <div class="zs-risk-bar"><div class="zs-risk-fill" style="width:64%;background:linear-gradient(90deg,#ea580c,#f97316);"></div></div>
+            <div class="zs-risk-meta"><span>Risk Score</span><span class="zs-risk-value" style="color:var(--high);">0.64</span></div>
+          </div>
+          <!-- Goa -->
+          <div class="zone-status-card status-ok">
+            <div class="zs-top">
+              <div class="zs-name-row"><i data-lucide="map-pin" class="icon icon-sm"></i><h4>Goa Coast</h4></div>
+              <span class="zs-badge ok">NORMAL</span>
+            </div>
+            <div class="zs-region"><i data-lucide="compass" class="icon icon-sm"></i>Arabian Sea · 15.30°N, 73.91°E</div>
+            <div class="zs-signals">
+              <div class="zs-sig"><span class="zs-sig-label">SST</span><span class="zs-sig-val">27.8°C</span></div>
+              <div class="zs-sig"><span class="zs-sig-label">Chl-a</span><span class="zs-sig-val">2.8</span></div>
+              <div class="zs-sig"><span class="zs-sig-label">Wind</span><span class="zs-sig-val">9.1</span></div>
+              <div class="zs-sig"><span class="zs-sig-label">pH</span><span class="zs-sig-val">8.14</span></div>
+            </div>
+            <div class="zs-risk-bar"><div class="zs-risk-fill" style="width:12%;background:linear-gradient(90deg,#16a34a,#22c55e);"></div></div>
+            <div class="zs-risk-meta"><span>Risk Score</span><span class="zs-risk-value" style="color:var(--low);">0.12</span></div>
+          </div>
+          <!-- Kochi -->
+          <div class="zone-status-card status-ok">
+            <div class="zs-top">
+              <div class="zs-name-row"><i data-lucide="map-pin" class="icon icon-sm"></i><h4>Kochi Coast</h4></div>
+              <span class="zs-badge ok">NORMAL</span>
+            </div>
+            <div class="zs-region"><i data-lucide="compass" class="icon icon-sm"></i>Arabian Sea · 9.93°N, 76.27°E</div>
+            <div class="zs-signals">
+              <div class="zs-sig"><span class="zs-sig-label">SST</span><span class="zs-sig-val">28.1°C</span></div>
+              <div class="zs-sig"><span class="zs-sig-label">Chl-a</span><span class="zs-sig-val">3.5</span></div>
+              <div class="zs-sig"><span class="zs-sig-label">Wind</span><span class="zs-sig-val">7.8</span></div>
+              <div class="zs-sig"><span class="zs-sig-label">pH</span><span class="zs-sig-val">8.10</span></div>
+            </div>
+            <div class="zs-risk-bar"><div class="zs-risk-fill" style="width:18%;background:linear-gradient(90deg,#16a34a,#22c55e);"></div></div>
+            <div class="zs-risk-meta"><span>Risk Score</span><span class="zs-risk-value" style="color:var(--low);">0.18</span></div>
+          </div>
+          <!-- Chennai -->
+          <div class="zone-status-card status-ok">
+            <div class="zs-top">
+              <div class="zs-name-row"><i data-lucide="map-pin" class="icon icon-sm"></i><h4>Chennai Coast</h4></div>
+              <span class="zs-badge ok">NORMAL</span>
+            </div>
+            <div class="zs-region"><i data-lucide="compass" class="icon icon-sm"></i>Bay of Bengal · 13.08°N, 80.27°E</div>
+            <div class="zs-signals">
+              <div class="zs-sig"><span class="zs-sig-label">SST</span><span class="zs-sig-val">28.6°C</span></div>
+              <div class="zs-sig"><span class="zs-sig-label">Chl-a</span><span class="zs-sig-val">2.4</span></div>
+              <div class="zs-sig"><span class="zs-sig-label">Wind</span><span class="zs-sig-val">8.9</span></div>
+              <div class="zs-sig"><span class="zs-sig-label">pH</span><span class="zs-sig-val">8.08</span></div>
+            </div>
+            <div class="zs-risk-bar"><div class="zs-risk-fill" style="width:21%;background:linear-gradient(90deg,#16a34a,#22c55e);"></div></div>
+            <div class="zs-risk-meta"><span>Risk Score</span><span class="zs-risk-value" style="color:var(--low);">0.21</span></div>
+          </div>
+          <!-- Visakhapatnam -->
+          <div class="zone-status-card status-ok">
+            <div class="zs-top">
+              <div class="zs-name-row"><i data-lucide="map-pin" class="icon icon-sm"></i><h4>Visakhapatnam</h4></div>
+              <span class="zs-badge ok">NORMAL</span>
+            </div>
+            <div class="zs-region"><i data-lucide="compass" class="icon icon-sm"></i>Bay of Bengal · 17.69°N, 83.22°E</div>
+            <div class="zs-signals">
+              <div class="zs-sig"><span class="zs-sig-label">SST</span><span class="zs-sig-val">27.9°C</span></div>
+              <div class="zs-sig"><span class="zs-sig-label">Chl-a</span><span class="zs-sig-val">3.0</span></div>
+              <div class="zs-sig"><span class="zs-sig-label">Wind</span><span class="zs-sig-val">7.5</span></div>
+              <div class="zs-sig"><span class="zs-sig-label">pH</span><span class="zs-sig-val">8.16</span></div>
+            </div>
+            <div class="zs-risk-bar"><div class="zs-risk-fill" style="width:15%;background:linear-gradient(90deg,#16a34a,#22c55e);"></div></div>
+            <div class="zs-risk-meta"><span>Risk Score</span><span class="zs-risk-value" style="color:var(--low);">0.15</span></div>
+          </div>
+          <!-- Andaman -->
+          <div class="zone-status-card status-ok">
+            <div class="zs-top">
+              <div class="zs-name-row"><i data-lucide="map-pin" class="icon icon-sm"></i><h4>Andaman Islands</h4></div>
+              <span class="zs-badge ok">NORMAL</span>
+            </div>
+            <div class="zs-region"><i data-lucide="compass" class="icon icon-sm"></i>Indian Ocean · 11.62°N, 92.73°E</div>
+            <div class="zs-signals">
+              <div class="zs-sig"><span class="zs-sig-label">SST</span><span class="zs-sig-val">28.9°C</span></div>
+              <div class="zs-sig"><span class="zs-sig-label">Chl-a</span><span class="zs-sig-val">3.1</span></div>
+              <div class="zs-sig"><span class="zs-sig-label">Wind</span><span class="zs-sig-val">6.4</span></div>
+              <div class="zs-sig"><span class="zs-sig-label">pH</span><span class="zs-sig-val">8.18</span></div>
+            </div>
+            <div class="zs-risk-bar"><div class="zs-risk-fill" style="width:9%;background:linear-gradient(90deg,#16a34a,#22c55e);"></div></div>
+            <div class="zs-risk-meta"><span>Risk Score</span><span class="zs-risk-value" style="color:var(--low);">0.09</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── MAIN DASHBOARD ── -->
+      <div class="dashboard-card animate-on-scroll" style="margin-top: 24px;">
+        <div class="dashboard-card-inner">
+          <div class="dash-topbar">
+            <div class="dash-topbar-left"><span class="status-dot"></span><span>System Operational — All Agents Active</span></div>
+            <div class="dash-topbar-right"><i data-lucide="radio" class="icon"></i><span>Last ingestion: <span id="live-sync" class="mono">6h ago</span></span></div>
+          </div>
+
+          <!-- Signal Cards -->
+          <div class="dash-signals" id="dash-signals">
+            <div class="signal-card"><div class="signal-label"><i data-lucide="thermometer" class="icon"></i>Sea Surface Temp</div><div class="signal-value" style="color:#e8c95a;" id="sig-sst">28.4°C</div><div class="signal-delta up"><i data-lucide="trending-up" class="icon"></i>+1.2° above baseline</div></div>
+            <div class="signal-card"><div class="signal-label"><i data-lucide="droplets" class="icon"></i>Chlorophyll-a</div><div class="signal-value" style="color:#22c55e;" id="sig-chl">3.2 mg/m³</div><div class="signal-delta stable">Normal range</div></div>
+            <div class="signal-card"><div class="signal-label"><i data-lucide="wind" class="icon"></i>Wind Speed</div><div class="signal-value" style="color:#3b82f6;" id="sig-wind">5.8 m/s</div><div class="signal-delta down"><i data-lucide="trending-down" class="icon"></i>-1.4 below avg</div></div>
+            <div class="signal-card"><div class="signal-label"><i data-lucide="flask-round" class="icon"></i>Ocean pH</div><div class="signal-value" id="sig-ph">8.12</div><div class="signal-delta stable">Stable</div></div>
+            <div class="signal-card"><div class="signal-label"><i data-lucide="waves" class="icon"></i>Turbidity</div><div class="signal-value" id="sig-turb">4.1 NTU</div><div class="signal-delta stable">Normal</div></div>
+          </div>
+
+          <!-- Chart + Root Cause Side by Side -->
+          <div class="dash-main-grid">
+            <!-- Chart -->
+            <div class="dash-chart">
+              <div class="dash-chart-header">
+                <div class="dash-chart-title"><i data-lucide="chart-line" class="icon"></i>SST Trend — Mumbai Coast (7 Days)</div>
+                <div class="dash-chart-legend"><div class="legend-item"><span class="legend-dot" style="background:#e8c95a;"></span>Observed</div><div class="legend-item"><span class="legend-dot" style="background:rgba(232,201,90,0.2);"></span>95% CI</div><div class="legend-item"><span class="legend-dot" style="background:#ef4444;"></span>Anomaly</div></div>
+              </div>
+              <svg viewBox="0 0 600 140" style="width:100%;height:140px;" role="img" aria-label="SST trend">
+                <line x1="0" y1="35" x2="600" y2="35" stroke="rgba(255,255,255,0.03)" stroke-width="1"/>
+                <line x1="0" y1="70" x2="600" y2="70" stroke="rgba(255,255,255,0.03)" stroke-width="1"/>
+                <line x1="0" y1="105" x2="600" y2="105" stroke="rgba(255,255,255,0.03)" stroke-width="1"/>
+                <!-- Y-axis labels -->
+                <text x="4" y="33" fill="rgba(255,255,255,0.2)" font-size="9" font-family="'JetBrains Mono'">30°C</text>
+                <text x="4" y="68" fill="rgba(255,255,255,0.2)" font-size="9" font-family="'JetBrains Mono'">28°C</text>
+                <text x="4" y="103" fill="rgba(255,255,255,0.2)" font-size="9" font-family="'JetBrains Mono'">26°C</text>
+                <!-- Baseline -->
+                <line x1="30" y1="70" x2="600" y2="70" stroke="rgba(239,68,68,0.2)" stroke-width="1" stroke-dasharray="6 4"/>
+                <text x="560" y="65" fill="rgba(239,68,68,0.4)" font-size="8" font-family="'JetBrains Mono'">baseline</text>
+                <!-- Confidence band -->
+                <path d="M30,78 C90,76 150,80 210,74 270,78 330,68 390,62 450,56 510,48 570,38 600,30 L600,100 C570,92 510,88 450,92 390,96 330,92 270,96 210,90 150,94 90,90 30,92 Z" fill="rgba(200,164,78,0.06)"/>
+                <!-- Main line -->
+                <path d="M30,85 C90,83 150,87 210,80 270,84 330,74 390,66 450,60 510,50 570,38 600,28" fill="none" stroke="#e8c95a" stroke-width="2.5" stroke-linecap="round"/>
+                <!-- Data points -->
+                <circle cx="30" cy="85" r="3" fill="#e8c95a"/><circle cx="150" cy="87" r="3" fill="#e8c95a"/><circle cx="270" cy="84" r="3" fill="#e8c95a"/>
+                <circle cx="390" cy="66" r="3.5" fill="#e8c95a"/><circle cx="510" cy="50" r="3.5" fill="#f97316"/>
+                <circle cx="600" cy="28" r="6" fill="#ef4444" stroke="rgba(239,68,68,0.25)" stroke-width="6">
+                  <animate attributeName="stroke-width" values="6;10;6" dur="2s" repeatCount="indefinite"/>
+                </circle>
+                <text x="580" y="20" fill="#ef4444" font-size="9" font-weight="700" font-family="'JetBrains Mono'">29.6°C</text>
+              </svg>
+              <div style="display:flex;justify-content:space-between;font-size:0.65rem;color:var(--text-tertiary);margin-top:4px;padding:0 30px 0 30px;">
+                <span>Mar 29</span><span>Mar 30</span><span>Mar 31</span><span>Apr 01</span><span>Apr 02</span><span>Apr 03</span><span style="color:var(--critical);font-weight:600;">Today</span>
+              </div>
+            </div>
+
+            <!-- Root Cause Panel -->
+            <div class="dash-rootcause">
+              <div class="dash-chart-title" style="margin-bottom:16px;"><i data-lucide="search" class="icon"></i>Root Cause — Mumbai Coast</div>
+              <div class="rootcause-bars">
+                <div class="rootcause-item">
+                  <div class="rootcause-header"><span>High Solar Insolation</span><span style="color:var(--text-gold);font-weight:700;">78%</span></div>
+                  <div class="rootcause-bar"><div class="rootcause-fill" style="width:78%;background:linear-gradient(90deg,#a8842e,#e8c95a);"></div></div>
+                </div>
+                <div class="rootcause-item">
+                  <div class="rootcause-header"><span>Reduced Wind Cooling</span><span style="color:#f97316;font-weight:700;">15%</span></div>
+                  <div class="rootcause-bar"><div class="rootcause-fill" style="width:15%;background:linear-gradient(90deg,#f97316,#fb923c);"></div></div>
+                </div>
+                <div class="rootcause-item">
+                  <div class="rootcause-header"><span>Seasonal Upward Drift</span><span style="color:#3b82f6;font-weight:700;">7%</span></div>
+                  <div class="rootcause-bar"><div class="rootcause-fill" style="width:7%;background:linear-gradient(90deg,#3b82f6,#60a5fa);"></div></div>
+                </div>
+              </div>
+              <div class="rootcause-prediction">
+                <i data-lucide="clock" class="icon icon-sm"></i>
+                <span>SST projected to reach <strong style="color:var(--critical);">30.2°C</strong> within <strong>48 hours</strong> if current trajectory continues</span>
+              </div>
+              <div class="rootcause-cascade">
+                <div class="cascade-title"><i data-lucide="git-branch" class="icon icon-sm"></i> Cascade Risk</div>
+                <div class="cascade-zones">
+                  <div class="cascade-zone"><span>Goa Coast</span><span class="cascade-prob" style="color:#f97316;">72%</span><span class="cascade-eta">3-5 days</span></div>
+                  <div class="cascade-zone"><span>Kochi Coast</span><span class="cascade-prob" style="color:var(--medium);">41%</span><span class="cascade-eta">5-7 days</span></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- ALERT FEED -->
+          <div class="dash-alerts" id="dash-alerts">
+            <div class="dash-alert-header">
+              <div class="dash-alert-title"><i data-lucide="shield-alert" class="icon"></i>Priority Alerts — Ranked by Decision Agent</div>
+              <div class="alert-count-badge"><span>3 Active</span></div>
+            </div>
+            <div class="alert-feed" id="alert-feed">
+              <div class="alert-row critical">
+                <div class="alert-severity-bar"></div>
+                <span class="alert-severity critical">Critical</span>
+                <div class="alert-content">
+                  <div class="alert-text">Thermal accumulation — 8-day SST drift +1.2°C with declining wind convergence</div>
+                  <div class="alert-meta"><span class="alert-score">Priority: 0.92/1.0</span><span class="alert-impact">Est. Impact: ₹2.4 Cr</span></div>
+                </div>
+                <span class="alert-zone">Mumbai</span>
+                <span class="alert-time">2h ago</span>
+              </div>
+              <div class="alert-row high">
+                <div class="alert-severity-bar"></div>
+                <span class="alert-severity high">High</span>
+                <div class="alert-content">
+                  <div class="alert-text">Chlorophyll-a spike exceeding seasonal baseline by 42% — potential algal bloom</div>
+                  <div class="alert-meta"><span class="alert-score">Priority: 0.87/1.0</span><span class="alert-impact">Est. Impact: ₹1.8 Cr</span></div>
+                </div>
+                <span class="alert-zone">Sundarbans</span>
+                <span class="alert-time">5h ago</span>
+              </div>
+              <div class="alert-row medium">
+                <div class="alert-severity-bar"></div>
+                <span class="alert-severity medium">Medium</span>
+                <div class="alert-content">
+                  <div class="alert-text">pH dropping below 8.0 threshold — ocean acidification trend detected over 12-day window</div>
+                  <div class="alert-meta"><span class="alert-score">Priority: 0.64/1.0</span><span class="alert-impact">Est. Impact: ₹0.9 Cr</span></div>
+                </div>
+                <span class="alert-zone">Gulf of Kutch</span>
+                <span class="alert-time">12h ago</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CAPABILITIES -->
+  <section class="capabilities section" id="capabilities">
+    <div class="container">
+      <div class="capabilities-header">
+        <div class="section-label"><span class="label-dot"></span>Core Capabilities</div>
+        <h2 class="section-title">Five intelligence requirements,<br/><span class="gradient-text">one autonomous system</span></h2>
+        <p class="section-subtitle">Each capability addresses a real challenge in environmental monitoring — here's what the system does differently.</p>
+      </div>
+      <div class="capability-cards">
+        <div class="capability-card animate-on-scroll"><div class="capability-number">01</div><div class="capability-content"><h3>Intelligent Anomaly Prioritization</h3><p>When a slow thermal buildup competes with a sudden spike, which alert should surface first? The Decision Agent uses a 4D scoring matrix — Recency, Magnitude, Trajectory, and Convergence — to rank deviations by actual decision-criticality, not raw threshold breach.</p></div><div class="capability-solution"><strong>Our approach:</strong> Multi-signal convergence scoring with time-weighted decay. Only alerts with convergent evidence from multiple signals cross the notification threshold.</div></div>
+        <div class="capability-card animate-on-scroll"><div class="capability-number">02</div><div class="capability-content"><h3>Temporal Pattern Modeling</h3><p>Static thresholds can't model seasonal rhythms. The Analysis Agent runs STL Decomposition to strip predictable patterns, then feeds residuals into an Isolation Forest to detect statistically significant departures — generating probabilistic, horizon-bounded early warnings.</p></div><div class="capability-solution"><strong>Our approach:</strong> Holt-Winters forecasting produces 7-day predictions with 95% confidence intervals, tied to observable precursor signatures rather than hardcoded rules.</div></div>
+        <div class="capability-card animate-on-scroll"><div class="capability-number">03</div><div class="capability-content"><h3>Adaptive Intelligence & Self-Correction</h3><p>Zones that consistently produce false positives shouldn't keep crying wolf. The Memory Agent tracks which alerts led to validated events vs. false positives, automatically recalibrating detection sensitivity per region without manual intervention.</p></div><div class="capability-solution"><strong>Our approach:</strong> Exponential moving average sensitivity adjustment (α=0.15) per zone. "Validated" feedback increases sensitivity; "False Positive" reduces it — creating a continuous learning loop.</div></div>
+        <div class="capability-card animate-on-scroll"><div class="capability-number">04</div><div class="capability-content"><h3>Context-Aware Query Interface</h3><p>Operators shouldn't need to dig through dashboards. They should ask "What needs attention right now?" and get a ranked, explainable response synthesizing across all active telemetry — historical drift, projected trajectory, and specific recommended actions.</p></div><div class="capability-solution"><strong>Our approach:</strong> Gemini LLM-powered Explanation Agent receives full system context (all alerts, anomalies, forecasts) and generates natural language briefings in 10 Indian languages.</div></div>
+        <div class="capability-card animate-on-scroll"><div class="capability-number">05</div><div class="capability-content"><h3>Signal-Optimized Alerting</h3><p>Redundant notifications breed alert fatigue — the very problem that makes analysts like Aryan ignore warnings. The system suppresses low-confidence and duplicate alerts, escalating only when convergent evidence crosses meaningful thresholds.</p></div><div class="capability-solution"><strong>Our approach:</strong> Multi-Agent Suppressor with 6-hour cooldown windows. Structured, action-oriented incident reports (IR-2026-XXXX) replace generic notifications.</div></div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="section-divider" />
+
+  <!-- PIPELINE -->
+  <section class="pipeline-section section" id="pipeline">
+    <div class="container">
+      <div class="pipeline-header">
+        <div class="section-label"><span class="label-dot"></span>Architecture</div>
+        <h2 class="section-title">Autonomous intelligence<br/><span class="gradient-text">pipeline</span></h2>
+        <p class="section-subtitle">Data flows through 9 specialized agents — from raw ingestion to prioritized, context-aware intelligence — without human intervention.</p>
+      </div>
+      <div class="pipeline-flow">
+        <div class="pipeline-layer animate-on-scroll"><div class="pipeline-layer-label"><i data-lucide="database" class="icon"></i> Data Layer</div><div class="pipeline-nodes cols-2"><div class="pipeline-node"><div class="icon-box"><i data-lucide="satellite-dish" class="icon"></i></div><div class="pipeline-node-info"><div class="pipeline-node-name">Data Agent</div><div class="pipeline-node-role">90-day rolling baseline for 8 coastal zones</div></div></div><div class="pipeline-node"><div class="icon-box"><i data-lucide="radio-tower" class="icon"></i></div><div class="pipeline-node-info"><div class="pipeline-node-name">Live Data Agent</div><div class="pipeline-node-role">NOAA ERDDAP, Open-Meteo, OpenAQ every 6h</div></div></div></div></div>
+        <div class="pipeline-arrow"><i data-lucide="arrow-down" class="icon"></i></div>
+        <div class="pipeline-layer animate-on-scroll"><div class="pipeline-layer-label"><i data-lucide="cpu" class="icon"></i> Analysis Layer</div><div class="pipeline-nodes cols-1"><div class="pipeline-node"><div class="icon-box"><i data-lucide="brain" class="icon"></i></div><div class="pipeline-node-info"><div class="pipeline-node-name">Analysis Agent</div><div class="pipeline-node-role">STL Decomposition → Isolation Forest → Holt-Winters 7-day forecast</div></div></div></div></div>
+        <div class="pipeline-arrow"><i data-lucide="arrow-down" class="icon"></i></div>
+        <div class="pipeline-layer animate-on-scroll"><div class="pipeline-layer-label"><i data-lucide="shield" class="icon"></i> Core Intelligence</div><div class="pipeline-nodes cols-3"><div class="pipeline-node"><div class="icon-box"><i data-lucide="scale" class="icon"></i></div><div class="pipeline-node-info"><div class="pipeline-node-name">Decision Agent</div><div class="pipeline-node-role">4D priority scoring & alert suppression</div></div></div><div class="pipeline-node"><div class="icon-box"><i data-lucide="hard-drive" class="icon"></i></div><div class="pipeline-node-info"><div class="pipeline-node-name">Memory Agent</div><div class="pipeline-node-role">Adaptive self-correction via feedback</div></div></div><div class="pipeline-node"><div class="icon-box"><i data-lucide="zap" class="icon"></i></div><div class="pipeline-node-info"><div class="pipeline-node-name">Intelligence Agent</div><div class="pipeline-node-role">Root cause, simulation & pattern memory</div></div></div></div></div>
+        <div class="pipeline-arrow"><i data-lucide="arrow-down" class="icon"></i></div>
+        <div class="pipeline-layer animate-on-scroll"><div class="pipeline-layer-label"><i data-lucide="send" class="icon"></i> Distribution</div><div class="pipeline-nodes cols-3"><div class="pipeline-node"><div class="icon-box"><i data-lucide="git-branch" class="icon"></i></div><div class="pipeline-node-info"><div class="pipeline-node-name">Cascade Agent</div><div class="pipeline-node-role">Cross-zone propagation prediction</div></div></div><div class="pipeline-node"><div class="icon-box"><i data-lucide="indian-rupee" class="icon"></i></div><div class="pipeline-node-info"><div class="pipeline-node-name">Impact Agent</div><div class="pipeline-node-role">Economic impact & incident reports</div></div></div><div class="pipeline-node"><div class="icon-box"><i data-lucide="message-square" class="icon"></i></div><div class="pipeline-node-info"><div class="pipeline-node-name">Explanation Agent</div><div class="pipeline-node-role">LLM briefings, chat & translation</div></div></div></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ZONES -->
+  <section class="zones section" id="zones">
+    <div class="container">
+      <div class="zones-header">
+        <div class="section-label"><span class="label-dot"></span>Coverage</div>
+        <h2 class="section-title">8 Indian coastal zones<br/><span class="gradient-text">under watch</span></h2>
+        <p class="section-subtitle">Strategically selected zones spanning the Arabian Sea, Bay of Bengal, and Indian Ocean — each with unique environmental profiles and baselines.</p>
+      </div>
+      <div class="zones-grid" id="zones-grid">
+        <div class="zone-card animate-on-scroll"><div class="zone-top"><div class="icon-box" style="width:32px;height:32px;"><i data-lucide="map-pin" class="icon icon-sm"></i></div><span class="zone-status-dot warning"></span></div><h4>Mumbai Coast</h4><div class="zone-region">Arabian Sea</div><div class="zone-signals"><div class="zone-signal"><div class="zone-signal-label">SST</div><div class="zone-signal-value" style="color:#e8c95a;">28.4°C</div></div><div class="zone-signal"><div class="zone-signal-label">Chl-a</div><div class="zone-signal-value">3.2</div></div></div><div class="zone-coords"><i data-lucide="compass" class="icon"></i>19.08°N, 72.88°E</div></div>
+        <div class="zone-card animate-on-scroll animate-delay-1"><div class="zone-top"><div class="icon-box" style="width:32px;height:32px;"><i data-lucide="map-pin" class="icon icon-sm"></i></div><span class="zone-status-dot ok"></span></div><h4>Goa Coast</h4><div class="zone-region">Arabian Sea</div><div class="zone-signals"><div class="zone-signal"><div class="zone-signal-label">SST</div><div class="zone-signal-value">27.8°C</div></div><div class="zone-signal"><div class="zone-signal-label">Chl-a</div><div class="zone-signal-value">2.8</div></div></div><div class="zone-coords"><i data-lucide="compass" class="icon"></i>15.30°N, 73.91°E</div></div>
+        <div class="zone-card animate-on-scroll animate-delay-2"><div class="zone-top"><div class="icon-box" style="width:32px;height:32px;"><i data-lucide="map-pin" class="icon icon-sm"></i></div><span class="zone-status-dot ok"></span></div><h4>Kochi Coast</h4><div class="zone-region">Arabian Sea</div><div class="zone-signals"><div class="zone-signal"><div class="zone-signal-label">SST</div><div class="zone-signal-value">28.1°C</div></div><div class="zone-signal"><div class="zone-signal-label">Chl-a</div><div class="zone-signal-value">3.5</div></div></div><div class="zone-coords"><i data-lucide="compass" class="icon"></i>9.93°N, 76.27°E</div></div>
+        <div class="zone-card animate-on-scroll animate-delay-3"><div class="zone-top"><div class="icon-box" style="width:32px;height:32px;"><i data-lucide="map-pin" class="icon icon-sm"></i></div><span class="zone-status-dot ok"></span></div><h4>Chennai Coast</h4><div class="zone-region">Bay of Bengal</div><div class="zone-signals"><div class="zone-signal"><div class="zone-signal-label">SST</div><div class="zone-signal-value">28.6°C</div></div><div class="zone-signal"><div class="zone-signal-label">Chl-a</div><div class="zone-signal-value">2.4</div></div></div><div class="zone-coords"><i data-lucide="compass" class="icon"></i>13.08°N, 80.27°E</div></div>
+        <div class="zone-card animate-on-scroll"><div class="zone-top"><div class="icon-box" style="width:32px;height:32px;"><i data-lucide="map-pin" class="icon icon-sm"></i></div><span class="zone-status-dot ok"></span></div><h4>Visakhapatnam</h4><div class="zone-region">Bay of Bengal</div><div class="zone-signals"><div class="zone-signal"><div class="zone-signal-label">SST</div><div class="zone-signal-value">27.9°C</div></div><div class="zone-signal"><div class="zone-signal-label">Chl-a</div><div class="zone-signal-value">3.0</div></div></div><div class="zone-coords"><i data-lucide="compass" class="icon"></i>17.69°N, 83.22°E</div></div>
+        <div class="zone-card animate-on-scroll animate-delay-1"><div class="zone-top"><div class="icon-box" style="width:32px;height:32px;"><i data-lucide="map-pin" class="icon icon-sm"></i></div><span class="zone-status-dot critical"></span></div><h4>Sundarbans Delta</h4><div class="zone-region">Bay of Bengal</div><div class="zone-signals"><div class="zone-signal"><div class="zone-signal-label">SST</div><div class="zone-signal-value" style="color:var(--high);">29.1°C</div></div><div class="zone-signal"><div class="zone-signal-label">Chl-a</div><div class="zone-signal-value" style="color:var(--high);">5.8</div></div></div><div class="zone-coords"><i data-lucide="compass" class="icon"></i>21.94°N, 88.87°E</div></div>
+        <div class="zone-card animate-on-scroll animate-delay-2"><div class="zone-top"><div class="icon-box" style="width:32px;height:32px;"><i data-lucide="map-pin" class="icon icon-sm"></i></div><span class="zone-status-dot ok"></span></div><h4>Gulf of Kutch</h4><div class="zone-region">Arabian Sea</div><div class="zone-signals"><div class="zone-signal"><div class="zone-signal-label">SST</div><div class="zone-signal-value">26.2°C</div></div><div class="zone-signal"><div class="zone-signal-label">Chl-a</div><div class="zone-signal-value">2.1</div></div></div><div class="zone-coords"><i data-lucide="compass" class="icon"></i>22.47°N, 69.08°E</div></div>
+        <div class="zone-card animate-on-scroll animate-delay-3"><div class="zone-top"><div class="icon-box" style="width:32px;height:32px;"><i data-lucide="map-pin" class="icon icon-sm"></i></div><span class="zone-status-dot ok"></span></div><h4>Andaman Islands</h4><div class="zone-region">Indian Ocean</div><div class="zone-signals"><div class="zone-signal"><div class="zone-signal-label">SST</div><div class="zone-signal-value">28.9°C</div></div><div class="zone-signal"><div class="zone-signal-label">Chl-a</div><div class="zone-signal-value">3.1</div></div></div><div class="zone-coords"><i data-lucide="compass" class="icon"></i>11.62°N, 92.73°E</div></div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="section-divider" />
+
+  <!-- FAQ -->
+  <section class="faq section" id="faq">
+    <div class="container">
+      <div class="faq-header">
+        <div class="section-label"><span class="label-dot"></span>Understanding the System</div>
+        <h2 class="section-title">How does it <span class="gradient-text">actually work?</span></h2>
+      </div>
+      <div class="faq-list">
+        <div class="faq-item"><button class="faq-question"><span>How does the system detect anomalies without static thresholds?</span><i data-lucide="plus" class="icon faq-icon"></i></button><div class="faq-answer"><div class="faq-answer-inner">STL Decomposition separates each signal into trend, seasonal, and residual components. The residuals are fed into an Isolation Forest (200 estimators, 5% contamination) which learns per-zone baselines. Anomalies are scored with z-scores and deviation percentages — no hardcoded thresholds needed.</div></div></div>
+        <div class="faq-item"><button class="faq-question"><span>What happens when an alert is a false positive?</span><i data-lucide="plus" class="icon faq-icon"></i></button><div class="faq-answer"><div class="faq-answer-inner">The Memory Agent tracks operator feedback. When analysts mark alerts as "False Positive," the system reduces sensitivity for that zone (EMA α=0.15). Over time, zones with frequent noise naturally get quieter while high-risk zones stay sensitive — the system self-corrects.</div></div></div>
+        <div class="faq-item"><button class="faq-question"><span>What data sources does the system use?</span><i data-lucide="plus" class="icon faq-icon"></i></button><div class="faq-answer"><div class="faq-answer-inner">Four free, no-API-key sources: NOAA ERDDAP (SST, Chlorophyll-a), Open-Meteo (wind, weather), OpenAQ (air quality PM2.5), and NASA EONET (natural events). Data is ingested every 6 hours; ML models retrain every 24 hours on a rolling 90-day window.</div></div></div>
+        <div class="faq-item"><button class="faq-question"><span>What is cascade prediction and why does it matter?</span><i data-lucide="plus" class="icon faq-icon"></i></button><div class="faq-answer"><div class="faq-answer-inner">Marine events don't stay in one zone. The Cascade Agent uses an ocean current adjacency matrix to predict which neighboring zones will be affected next. Example: "Mumbai thermal event → Goa at 72% risk in 3-5 days." This gives administrators lead time to prepare.</div></div></div>
+        <div class="faq-item"><button class="faq-question"><span>How does the economic impact estimation work?</span><i data-lucide="plus" class="icon faq-icon"></i></button><div class="faq-answer"><div class="faq-answer-inner">The Impact Agent converts anomaly scores into ₹ Crore figures by mapping events to zone-specific economic profiles — fishing revenue, shipping delays, tourism loss, and number of affected families. This helps policymakers prioritize response by real-world cost, not just scientific severity.</div></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-section section" id="cta">
+    <div class="container"><div class="cta-content">
+      <h2 class="cta-title">From data overload to<br/><span class="gradient-text">actionable intelligence</span></h2>
+      <p class="cta-description">EcoSentinel transforms the overwhelming volume of Earth observation data into clear, prioritized, context-aware situational awareness.</p>
+      <div class="cta-actions">
+        <a href="/app" class="btn btn-primary"><i data-lucide="rocket" class="icon icon-sm"></i>Launch Live Dashboard</a>
+        <a href="#capabilities" class="btn btn-outline-gold"><i data-lucide="layers" class="icon icon-sm"></i>View Capabilities</a>
+      </div>
+    </div></div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-brand"><div class="brand-icon" style="width:24px;height:24px;background:var(--gold-gradient);border-radius:5px;display:flex;align-items:center;justify-content:center;"><i data-lucide="globe" class="icon icon-sm" style="color:#0a0a0a;width:13px;height:13px;"></i></div><span>EcoSentinel</span></div>
+      <div class="footer-text">Empowering environmental policy through cognitive AI. Autonomous coastal intelligence for monitoring teams worldwide.</div>
+      <ul class="footer-links"><li><a href="#dashboard"><i data-lucide="activity" class="icon"></i>Dashboard</a></li><li><a href="#capabilities"><i data-lucide="layers" class="icon"></i>Capabilities</a></li><li><a href="#zones"><i data-lucide="map-pin" class="icon"></i>Zones</a></li></ul>
+    </div>
+  </footer>
+
+  <script src="/static/landing.js"></script>
+</body>
+</html>

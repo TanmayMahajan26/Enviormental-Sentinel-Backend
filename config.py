@@ -51,4 +51,4 @@ TOTAL_READINGS = DATA_DAYS * 24 * READINGS_PER_HOUR
 # --- Server ---
 HOST = os.getenv("HOST", "0.0.0.0")
 PORT = int(os.getenv("PORT", 8000))
-FRONTEND_DIR = os.path.join(os.path.dirname(os.path.dirname(__file__)), "frontend")
+FRONTEND_DIR = os.path.join(os.path.dirname(__file__), "frontend")

@@ -1,22 +1,58 @@
-# Environment Variables
+# ═══════════════════════════════════════════════
+# Environment & Secrets
+# ═══════════════════════════════════════════════
 .env
 .env.local
+.env.production
 
-# Python standard exclusions
+# ═══════════════════════════════════════════════
+# Python
+# ═══════════════════════════════════════════════
 __pycache__/
 *.pyc
+*.pyo
+*.pyd
+.Python
+*.egg-info/
+dist/
+build/
+venv/
+env/
+.venv/
 
-# Database files
+# ═══════════════════════════════════════════════
+# Database (auto-generated at runtime)
+# ═══════════════════════════════════════════════
 *.db
 *.sqlite
 *.sqlite3
 
-# Cached ML Models
-*.pkl
+# ═══════════════════════════════════════════════
+# ML Models (auto-trained at runtime)
+# ═══════════════════════════════════════════════
+data/models/*.pkl
 
-# Test files
-test_*.py
+# ═══════════════════════════════════════════════
+# IDE & Editor
+# ═══════════════════════════════════════════════
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
 
-# Virtual environments
-venv/
-env/
+# ═══════════════════════════════════════════════
+# OS Files
+# ═══════════════════════════════════════════════
+.DS_Store
+Thumbs.db
+
+# ═══════════════════════════════════════════════
+# Unnecessary project files
+# ═══════════════════════════════════════════════
+render.yaml
+simulation_app.py
+start_demo.bat
+skills-lock.json
+.agents/
+.python-version

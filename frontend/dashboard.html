@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EcoSentinel — AI Environmental Intelligence</title>
+  <meta name="description" content="Autonomous geospatial intelligence engine for Indian coastal monitoring with 9 AI agents.">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌍</text></svg>">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/static/style.css">
+  <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-inner">
+      <div class="nav-brand"><span class="brand-icon">🌍</span><span>EcoSentinel</span></div>
+      <div class="nav-tabs" id="nav-tabs">
+        <button class="nav-tab active" data-tab="dashboard"><i data-lucide="layout-dashboard"></i><span>Dashboard</span></button>
+        <button class="nav-tab" data-tab="alerts"><i data-lucide="shield-alert"></i><span>Alerts</span></button>
+        <button class="nav-tab" data-tab="incidents"><i data-lucide="file-text"></i><span>Incidents</span></button>
+        <button class="nav-tab" data-tab="chat"><i data-lucide="message-square"></i><span>AI Chat</span></button>
+        <button class="nav-tab" data-tab="simulation"><i data-lucide="flask-round"></i><span>Simulation</span></button>
+        <button class="nav-tab" data-tab="logs"><i data-lucide="terminal"></i><span>Agent Logs</span></button>
+      </div>
+      <div class="nav-right">
+        <a href="/docs" target="_blank" class="nav-api-btn"><i data-lucide="code-2"></i><span>API Docs</span></a>
+        <div class="nav-status" id="nav-status"><span class="status-dot offline"></span><span class="status-text">Connecting…</span></div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- MAIN -->
+  <main id="main-content">
+
+    <!-- ═══ DASHBOARD ═══ -->
+    <section id="page-dashboard" class="page active">
+      <div class="page-head"><h1>🛡️ Mission Control</h1><p>Real-time coastal intelligence across 8 Indian zones</p></div>
+      <div class="stats-row" id="stats-row"></div>
+      <div class="section-head"><h2>🗺️ Coastal Zones</h2><button class="btn-sm" onclick="loadDashboard()"><i data-lucide="refresh-cw"></i> Refresh</button></div>
+      <div class="zone-grid" id="zone-grid"><div class="loader">Loading zones…</div></div>
+      <div class="split-row">
+        <div class="split-left">
+          <div class="section-head"><h2>🚨 Priority Alerts</h2></div>
+          <div id="dash-alerts"><div class="loader">Loading alerts…</div></div>
+        </div>
+        <div class="split-right">
+          <div class="section-head"><h2>🧠 AI Briefing</h2></div>
+          <div id="dash-briefing"><div class="loader">Loading briefing…</div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ ZONE DETAIL ═══ -->
+    <section id="page-zone-detail" class="page">
+      <button class="btn-back" onclick="switchTab('dashboard')"><i data-lucide="arrow-left"></i> Back to Dashboard</button>
+      <div id="zone-detail-content"><div class="loader">Loading zone…</div></div>
+    </section>
+
+    <!-- ═══ ALERTS ═══ -->
+    <section id="page-alerts" class="page">
+      <div class="page-head"><h1>🚨 Priority Alerts</h1><p>Decision Agent ranked alerts — submit feedback to train the Memory Agent</p></div>
+      <div id="alerts-list"><div class="loader">Loading alerts…</div></div>
+    </section>
+
+    <!-- ═══ INCIDENTS ═══ -->
+    <section id="page-incidents" class="page">
+      <div class="page-head"><h1>📝 Incident Reports</h1><p>Auto-generated structured reports for regulatory filing</p></div>
+      <div class="incidents-controls" id="incidents-controls"></div>
+      <div id="incident-report"></div>
+    </section>
+
+    <!-- ═══ AI CHAT ═══ -->
+    <section id="page-chat" class="page">
+      <div class="page-head"><h1>💬 AI Intelligence Chat</h1><p>Ask the Explanation Agent about environmental conditions</p></div>
+      <div class="chat-box">
+        <div class="chat-messages" id="chat-messages">
+          <div class="chat-msg assistant"><div class="chat-bubble">Hello! I'm the EcoSentinel AI. Ask me anything — "What needs attention right now?" or "Tell me about Mumbai thermal buildup."</div></div>
+        </div>
+        <form class="chat-form" id="chat-form" onsubmit="handleChat(event)">
+          <input type="text" id="chat-input" placeholder="Ask: What needs attention right now?" autocomplete="off">
+          <button type="submit" class="btn-send"><i data-lucide="send"></i></button>
+        </form>
+      </div>
+    </section>
+
+    <!-- ═══ SIMULATION ═══ -->
+    <section id="page-simulation" class="page">
+      <div class="page-head"><h1>🧪 What-If Simulation</h1><p>Simulate environmental changes and see cascading impacts</p></div>
+      <div class="sim-form-card" id="sim-form">
+        <div class="sim-row">
+          <label>Zone<select id="sim-zone"></select></label>
+        </div>
+        <div class="sim-params">
+          <label>SST Change (°C)<input type="number" id="sim-sst" step="0.5" value="2.0"></label>
+          <label>Chlorophyll Change (mg/m³)<input type="number" id="sim-chl" step="0.5" value="1.0"></label>
+          <label>Wind Speed Change (m/s)<input type="number" id="sim-wind" step="0.5" value="-1.0"></label>
+          <label>pH Change<input type="number" id="sim-ph" step="0.1" value="-0.1"></label>
+          <label>Turbidity Change (NTU)<input type="number" id="sim-turb" step="1" value="2.0"></label>
+        </div>
+        <button class="btn-primary" onclick="runSimulation()"><i data-lucide="play"></i> Run Simulation</button>
+      </div>
+      <div id="sim-results"></div>
+    </section>
+
+    <!-- ═══ AGENT LOGS ═══ -->
+    <section id="page-logs" class="page">
+      <div class="page-head"><h1>🤖 Multi-Agent Reasoning Chain</h1><p>Real-time conversation between 9 autonomous agents</p></div>
+      <div id="logs-content"><div class="loader">Loading logs…</div></div>
+    </section>
+  </main>
+
+  <!-- TOAST -->
+  <div id="toast-container"></div>
+
+  <script src="/static/app.js"></script>
+</body>
+</html>

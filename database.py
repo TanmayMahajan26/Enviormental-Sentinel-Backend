@@ -275,6 +275,18 @@ def get_readings(zone_id: str, limit: int = 2160, offset: int = 0):
     return [dict(r) for r in rows]
 
 
+def get_all_readings_for_zone(zone_id: str):
+    """Return ALL readings for a zone (no limit). Used by agents for full analysis."""
+    conn = get_connection()
+    is_pg = is_postgres(conn)
+    cursor = conn.cursor(cursor_factory=RealDictCursor) if is_pg else conn.cursor()
+    query = "SELECT * FROM readings WHERE zone_id = %s ORDER BY timestamp ASC" if is_pg else "SELECT * FROM readings WHERE zone_id = ? ORDER BY timestamp ASC"
+    cursor.execute(query, (zone_id,))
+    rows = cursor.fetchall()
+    conn.close()
+    return [dict(r) for r in rows]
+
+
 def get_readings_count(zone_id: str):
     conn = get_connection()
     cursor = conn.cursor()

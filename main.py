@@ -894,6 +894,14 @@ if os.path.exists(FRONTEND_DIR):
             return FileResponse(index_path)
         return {"message": "Frontend not built yet. Use /docs for API documentation."}
 
+    @app.get("/app", tags=["🖥️ Frontend"])
+    def serve_dashboard():
+        """Serve the live dashboard application"""
+        dashboard_path = os.path.join(FRONTEND_DIR, "dashboard.html")
+        if os.path.exists(dashboard_path):
+            return FileResponse(dashboard_path)
+        return {"message": "Dashboard not found"}
+
 
 # ═══════════════════════════════════════════════════════════
 # RUN
