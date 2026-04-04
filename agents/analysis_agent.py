@@ -128,7 +128,7 @@ def train_zone_model(zone_id: str) -> dict:
         return {"zone_id": zone_id, "status": "no_data"}
 
     df = pd.DataFrame(readings)
-    df["timestamp"] = pd.to_datetime(df["timestamp"])
+    df["timestamp"] = pd.to_datetime(df["timestamp"], format="mixed", utc=True)
     df = df.sort_values("timestamp").reset_index(drop=True)
 
     # ═══════════════════════════════════════════
