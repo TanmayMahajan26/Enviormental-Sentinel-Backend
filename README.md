@@ -67,10 +67,10 @@ TELEGRAM_CHAT_ID=your_id
 
 ### 3. Quick Start
 ```bash
-# 1. Start the Sentinel Backend Server
+# 1. Start the Sentinel Backend Server (Terminal 1)
 python main.py
 
-# 2. Open the Simulation Dashboard (New Terminal)
+# 2. Open the Simulation Dashboard (Terminal 2)
 python -m streamlit run simulation_app.py
 ```
 
