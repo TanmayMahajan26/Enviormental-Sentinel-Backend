@@ -1,145 +1,172 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>EcoSentinel — AI Environmental Intelligence</title>
-  <meta name="description" content="Autonomous geospatial intelligence engine for Indian coastal monitoring with 9 AI agents.">
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌍</text></svg>">
-  <link rel="stylesheet" href="/static/style.css">
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>EcoSentinel — Mission Control</title>
+  <meta name="description" content="AI-powered environmental intelligence dashboard for real-time coastal monitoring across 8 Indian coastal zones"/>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌊</text></svg>"/>
+  <link rel="stylesheet" href="/static/style.css"/>
   <script src="https://unpkg.com/lucide@latest"></script>
 </head>
 <body>
 
   <!-- NAVBAR -->
-  <nav class="navbar" id="navbar">
+  <nav class="navbar">
     <div class="nav-inner">
-      <div class="nav-brand"><span class="brand-icon">🌍</span><span>EcoSentinel</span></div>
-      <div class="nav-tabs" id="nav-tabs">
-        <button class="nav-tab active" data-tab="dashboard"><i data-lucide="layout-dashboard"></i><span>Dashboard</span></button>
-        <button class="nav-tab" data-tab="alerts"><i data-lucide="shield-alert"></i><span>Alerts</span></button>
-        <button class="nav-tab" data-tab="incidents"><i data-lucide="file-text"></i><span>Incidents</span></button>
-        <button class="nav-tab" data-tab="chat"><i data-lucide="message-square"></i><span>AI Chat</span></button>
-        <button class="nav-tab" data-tab="simulation"><i data-lucide="flask-round"></i><span>Simulation</span></button>
-        <button class="nav-tab" data-tab="logs"><i data-lucide="terminal"></i><span>Agent Logs</span></button>
+      <a href="/" class="nav-brand"><span class="brand-icon">🌏</span> EcoSentinel</a>
+
+      <div class="nav-tabs">
+        <button class="nav-tab active" data-tab="dashboard"><i data-lucide="layout-dashboard"></i> Dashboard</button>
+        <button class="nav-tab" data-tab="alerts"><i data-lucide="bell"></i> Alerts</button>
+        <button class="nav-tab" data-tab="incidents"><i data-lucide="file-search"></i> Incidents</button>
+        <button class="nav-tab" data-tab="chat"><i data-lucide="message-square"></i> AI Chat</button>
+        <button class="nav-tab" data-tab="simulation"><i data-lucide="flask-conical"></i> Simulation</button>
+        <button class="nav-tab" data-tab="logs"><i data-lucide="terminal"></i> Agent Logs</button>
       </div>
+
       <div class="nav-right">
-        <a href="/" class="nav-api-btn"><i data-lucide="home"></i><span>Home</span></a>
-        <a href="/docs" target="_blank" class="nav-api-btn"><i data-lucide="code-2"></i><span>API Docs</span></a>
-        <div class="nav-status" id="nav-status"><span class="status-dot offline"></span><span class="status-text">Connecting…</span></div>
+        <a href="/" class="nav-api-btn"><i data-lucide="home"></i> <span>Home</span></a>
+        <a href="/docs" target="_blank" class="nav-api-btn"><i data-lucide="code-2"></i> <span>API</span></a>
+        <div id="nav-status" class="nav-status"><span class="status-dot"></span><span class="status-text">Connecting…</span></div>
       </div>
     </div>
   </nav>
 
-  <!-- MAIN -->
-  <main id="main-content">
-
+  <main>
     <!-- ═══ DASHBOARD ═══ -->
-    <section id="page-dashboard" class="page active">
-      <div class="page-head"><h1>🛡️ Mission Control</h1><p>Real-time coastal intelligence across 8 Indian zones</p></div>
-      <div class="stats-row" id="stats-row"></div>
+    <div class="page active" id="page-dashboard">
+      <div class="page-head">
+        <h1>🛡️ Mission Control</h1>
+        <p>Real-time coastal intelligence across 8 Indian zones — powered by 9 autonomous agents</p>
+      </div>
 
-      <!-- SIGNAL OVERVIEW GAUGES -->
-      <div class="chart-panel" id="signal-gauges-panel" style="margin-bottom:20px;">
-        <div class="chart-header">
-          <div class="chart-title"><i data-lucide="gauge" style="width:16px;height:16px;color:var(--teal)"></i> System Health Overview</div>
-          <div class="chart-legend">
-            <div class="legend-item"><span class="legend-dot" style="background:var(--teal)"></span>Optimal</div>
-            <div class="legend-item"><span class="legend-dot" style="background:var(--high)"></span>Warning</div>
-            <div class="legend-item"><span class="legend-dot" style="background:var(--critical)"></span>Critical</div>
+      <div class="stats-row" id="stats-row">
+        <div class="stat-card"><div class="stat-val">—</div><div class="stat-lbl">Loading…</div></div>
+      </div>
+
+      <div class="gauge-panel" id="gauge-panel">
+        <div class="gauge-header">
+          <div class="gauge-title"><i data-lucide="activity" style="width:16px;height:16px;color:var(--teal)"></i> System Health</div>
+          <div class="gauge-legend">
+            <div class="leg-item"><span class="leg-dot" style="background:#2dd4bf"></span> Optimal</div>
+            <div class="leg-item"><span class="leg-dot" style="background:#eab308"></span> Warning</div>
+            <div class="leg-item"><span class="leg-dot" style="background:#f43f5e"></span> Critical</div>
           </div>
         </div>
         <div class="gauge-container" id="system-gauges"></div>
       </div>
 
-      <div class="section-head"><h2>🗺️ Coastal Zones</h2><button class="btn-sm" onclick="loadDashboard()"><i data-lucide="refresh-cw"></i> Refresh</button></div>
-      <div class="zone-grid" id="zone-grid"><div class="loader">Loading zones…</div></div>
-
-      <!-- SIGNAL TREND CHART -->
-      <div class="chart-panel" style="margin-top:20px;" id="trend-chart-panel">
-        <div class="chart-header">
-          <div class="chart-title"><i data-lucide="trending-up" style="width:16px;height:16px;color:var(--gold2)"></i> Signal Trend — Latest 24h (Highest Risk Zone)</div>
-          <div class="chart-legend">
-            <div class="legend-item"><span class="legend-dot" style="background:var(--gold2)"></span>SST</div>
-            <div class="legend-item"><span class="legend-dot" style="background:var(--teal)"></span>Chlorophyll</div>
-            <div class="legend-item"><span class="legend-dot" style="background:var(--info)"></span>Wind</div>
-          </div>
-        </div>
-        <div class="chart-body" id="trend-chart"></div>
+      <div class="section-head">
+        <h2>🗺️ Coastal Zones</h2>
+        <button class="btn-sm" onclick="loadDashboard()"><i data-lucide="refresh-cw"></i> Refresh</button>
       </div>
+      <div class="zone-grid" id="zone-grid"><div class="loader">Loading zone intelligence…</div></div>
 
       <div class="split-row">
-        <div class="split-left">
-          <div class="section-head"><h2>🚨 Priority Alerts</h2></div>
+        <div>
+          <div class="chart-panel" id="trend-chart-panel" style="margin-top:22px">
+            <div class="chart-header">
+              <div class="chart-title"><i data-lucide="trending-up" style="width:16px;height:16px;color:var(--gold2)"></i> Signal Trend</div>
+              <div class="chart-legend">
+                <div class="legend-item"><span class="legend-dot" style="background:#e8c95a"></span> SST</div>
+                <div class="legend-item"><span class="legend-dot" style="background:#2dd4bf"></span> Chl-a</div>
+                <div class="legend-item"><span class="legend-dot" style="background:#3b82f6"></span> Wind</div>
+              </div>
+            </div>
+            <div class="chart-body" id="trend-chart"><div class="empty" style="padding:24px">Rendering…</div></div>
+          </div>
+        </div>
+        <div>
+          <div class="section-head"><h2>📡 Intel Briefing</h2></div>
+          <div id="dash-briefing"><div class="loader">Composing briefing…</div></div>
+          <div class="section-head" style="margin-top:12px"><h2>🚨 Latest Alerts</h2></div>
           <div id="dash-alerts"><div class="loader">Loading alerts…</div></div>
         </div>
-        <div class="split-right">
-          <div class="section-head"><h2>🧠 AI Briefing</h2></div>
-          <div id="dash-briefing"><div class="loader">Loading briefing…</div></div>
-        </div>
       </div>
-    </section>
+    </div>
 
     <!-- ═══ ZONE DETAIL ═══ -->
-    <section id="page-zone-detail" class="page">
-      <button class="btn-back" onclick="switchTab('dashboard')"><i data-lucide="arrow-left"></i> Back to Dashboard</button>
-      <div id="zone-detail-content"><div class="loader">Loading zone…</div></div>
-    </section>
+    <div class="page" id="page-zone-detail">
+      <button class="btn-back" onclick="switchTab('dashboard')"><i data-lucide="arrow-left"></i> Back to Overview</button>
+      <div id="zone-detail-content"><div class="loader">Loading zone intelligence…</div></div>
+    </div>
 
     <!-- ═══ ALERTS ═══ -->
-    <section id="page-alerts" class="page">
-      <div class="page-head"><h1>🚨 Priority Alerts</h1><p>Decision Agent ranked alerts — submit feedback to train the Memory Agent</p></div>
+    <div class="page" id="page-alerts">
+      <div class="page-head">
+        <h1>🚨 Alert Center</h1>
+        <p>Priority-ranked environmental alerts with ML-enhanced severity scoring and human-in-the-loop feedback</p>
+      </div>
       <div id="alerts-list"><div class="loader">Loading alerts…</div></div>
-    </section>
+    </div>
 
     <!-- ═══ INCIDENTS ═══ -->
-    <section id="page-incidents" class="page">
-      <div class="page-head"><h1>📝 Incident Reports</h1><p>Auto-generated structured reports for regulatory filing</p></div>
-      <div class="incidents-controls" id="incidents-controls"></div>
+    <div class="page" id="page-incidents">
+      <div class="page-head">
+        <h1>📋 Incident Reports</h1>
+        <p>Full diagnostic incident reports with timeline analysis, root cause chains, and economic projections</p>
+      </div>
+      <div id="incidents-controls"><div class="loader">Loading…</div></div>
       <div id="incident-report"></div>
-    </section>
+    </div>
 
     <!-- ═══ AI CHAT ═══ -->
-    <section id="page-chat" class="page">
-      <div class="page-head"><h1>💬 AI Intelligence Chat</h1><p>Ask the Explanation Agent about environmental conditions</p></div>
+    <div class="page" id="page-chat">
+      <div class="page-head">
+        <h1>🤖 Intelligence Assistant</h1>
+        <p>Natural language interface to the entire environmental intelligence pipeline — ask about zones, risks, and recommendations</p>
+      </div>
       <div class="chat-box">
         <div class="chat-messages" id="chat-messages">
-          <div class="chat-msg assistant"><div class="chat-bubble">Hello! I'm the EcoSentinel AI. Ask me anything — "What needs attention right now?" or "Tell me about Mumbai thermal buildup."</div></div>
+          <div class="chat-msg assistant">
+            <div class="chat-avatar">🤖</div>
+            <div class="chat-bubble">Welcome, Commander. I have access to all 8 coastal zones, the latest satellite readings, and our anomaly detection system. How can I help you?
+              <div class="chat-meta"><span>System Online</span><span>9 agents connected</span></div>
+            </div>
+          </div>
         </div>
         <form class="chat-form" id="chat-form" onsubmit="handleChat(event)">
-          <input type="text" id="chat-input" placeholder="Ask: What needs attention right now?" autocomplete="off">
+          <input type="text" id="chat-input" placeholder="Ask about zones, risks, anomalies, or recommendations…" autocomplete="off"/>
           <button type="submit" class="btn-send"><i data-lucide="send"></i></button>
         </form>
       </div>
-    </section>
+    </div>
 
     <!-- ═══ SIMULATION ═══ -->
-    <section id="page-simulation" class="page">
-      <div class="page-head"><h1>🧪 What-If Simulation</h1><p>Simulate environmental changes and see cascading impacts</p></div>
-      <div class="sim-form-card" id="sim-form">
+    <div class="page" id="page-simulation">
+      <div class="page-head">
+        <h1>🧪 What-If Simulation</h1>
+        <p>Inject hypothetical environmental parameters and observe cascading risk predictions and economic impact projections</p>
+      </div>
+      <div class="sim-form-card">
         <div class="sim-row">
-          <label>Zone<select id="sim-zone"></select></label>
+          <label>Target Zone
+            <select id="sim-zone"><option value="">Loading zones…</option></select>
+          </label>
         </div>
         <div class="sim-params">
-          <label>SST Change (°C)<input type="number" id="sim-sst" step="0.5" value="2.0"></label>
-          <label>Chlorophyll Change (mg/m³)<input type="number" id="sim-chl" step="0.5" value="1.0"></label>
-          <label>Wind Speed Change (m/s)<input type="number" id="sim-wind" step="0.5" value="-1.0"></label>
-          <label>pH Change<input type="number" id="sim-ph" step="0.1" value="-0.1"></label>
-          <label>Turbidity Change (NTU)<input type="number" id="sim-turb" step="1" value="2.0"></label>
+          <label>SST (°C) <input id="sim-sst" type="number" step="0.1" placeholder="e.g. 32.5"/></label>
+          <label>Chlorophyll (mg/m³) <input id="sim-chl" type="number" step="0.1" placeholder="e.g. 8.5"/></label>
+          <label>Wind Speed (m/s) <input id="sim-wind" type="number" step="0.1" placeholder="e.g. 15.0"/></label>
+          <label>pH <input id="sim-ph" type="number" step="0.01" placeholder="e.g. 7.8"/></label>
+          <label>Turbidity (NTU) <input id="sim-turb" type="number" step="0.1" placeholder="e.g. 12.0"/></label>
         </div>
-        <button class="btn-primary" onclick="runSimulation()"><i data-lucide="play"></i> Run Simulation</button>
+        <button class="btn-primary" onclick="runSimulation()"><i data-lucide="zap" style="width:16px;height:16px"></i> Run Simulation</button>
       </div>
       <div id="sim-results"></div>
-    </section>
+    </div>
 
     <!-- ═══ AGENT LOGS ═══ -->
-    <section id="page-logs" class="page">
-      <div class="page-head"><h1>🤖 Multi-Agent Reasoning Chain</h1><p>Real-time conversation between 9 autonomous agents</p></div>
-      <div id="logs-content"><div class="loader">Loading logs…</div></div>
-    </section>
+    <div class="page" id="page-logs">
+      <div class="page-head">
+        <h1>📡 Agent Intelligence Feed</h1>
+        <p>Real-time activity stream from 9 autonomous agents — color-coded by origin with execution context</p>
+      </div>
+      <div id="logs-content"><div class="loader">Loading agent feed…</div></div>
+    </div>
   </main>
 
-  <!-- TOAST -->
   <div id="toast-container"></div>
 
   <script src="/static/app.js"></script>
