@@ -26,10 +26,10 @@ function formatTime(ts) {
     if (diff < 24) return Math.round(diff)+'h ago'; return Math.round(diff/24)+'d ago';
   } catch(_) { return ts; }
 }
-function sevColor(s) { return s==='critical'?'#f43f5e':s==='high'?'#f97316':s==='medium'?'#eab308':'#10b981'; }
+function sevColor(s) { return s==='critical'?'#FF003C':s==='high'?'#FF6B00':s==='medium'?'#FFB800':'#00FF85'; }
 function sevClass(s) { return s==='critical'?'critical':s==='high'?'high':s==='medium'?'medium':'low'; }
-function riskColor(score) { return score>0.7?'#f43f5e':score>0.4?'#f97316':score>0.2?'#eab308':'#10b981'; }
-function riskGrad(score) { return score>0.7?'linear-gradient(90deg,#be123c,#f43f5e)':score>0.4?'linear-gradient(90deg,#c2410c,#f97316)':score>0.2?'linear-gradient(90deg,#a16207,#eab308)':'linear-gradient(90deg,#059669,#10b981)'; }
+function riskColor(score) { return score>0.7?'#FF003C':score>0.4?'#FF6B00':score>0.2?'#FFB800':'#00FF85'; }
+function riskGrad(score) { return score>0.7?'linear-gradient(90deg,#990024,#FF003C)':score>0.4?'linear-gradient(90deg,#994000,#FF6B00)':score>0.2?'linear-gradient(90deg,#996E00,#FFB800)':'linear-gradient(90deg,#009950,#00FF85)'; }
 function riskLabel(score) { return score>0.7?'CRITICAL':score>0.4?'HIGH':score>0.2?'MEDIUM':'NORMAL'; }
 function escapeHTML(s) { const d=document.createElement('div'); d.textContent=s; return d.innerHTML; }
 function toast(msg, type='info') {
@@ -40,6 +40,12 @@ function toast(msg, type='info') {
 function sevIcon(s) {
   const icons = { critical:'🔴', high:'🟠', medium:'🟡', low:'🟢' };
   return icons[s] || '⚪';
+}
+
+// Sidebar Toggle
+function toggleSidebar() {
+  const sidebar = document.getElementById('sidebar');
+  if (sidebar) sidebar.classList.toggle('open');
 }
 
 // ═══════════════════════════════════════════════════
@@ -91,7 +97,7 @@ function buildAreaChart(datasets, width=900, height=180) {
   function toX(i, len) { return pad.left + (i / Math.max(len - 1, 1)) * w; }
   function toY(v) { return pad.top + h - ((v - minY) / range) * h; }
 
-  let svg = `<svg viewBox="0 0 ${width} ${height}" preserveAspectRatio="none" style="height:${height}px;">`;
+  let svg = `<svg viewBox="0 0 ${width} ${height}" preserveAspectRatio="none" style="width:100%; height:${height}px; display:block;">`;
 
   // Grid
   for (let i = 0; i <= 4; i++) {
@@ -170,7 +176,7 @@ function switchTab(tab) {
   document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
   const page = $('page-'+tab);
   if (page) page.classList.add('active');
-  document.querySelectorAll('.nav-tab').forEach(t => {
+  document.querySelectorAll('.sb-item').forEach(t => {
     t.classList.toggle('active', t.dataset.tab === tab);
   });
   if (tab === 'dashboard') loadDashboard();
@@ -184,7 +190,7 @@ function switchTab(tab) {
 function showZoneDetail(zoneId) {
   document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
   $('page-zone-detail').classList.add('active');
-  document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.sb-item').forEach(t => t.classList.remove('active'));
   loadZoneDetail(zoneId);
 }
 
@@ -269,10 +275,10 @@ async function loadDashboard() {
   try {
     const b = await fetchJSON('/api/briefing');
     html('dash-briefing', `<div class="briefing-box">
-      <div class="briefing-text">${b.summary}</div>
+      <div class="briefing-text">${b.summary.replace(/\*\*/g, '').replace(/\n/g, '<br>')}</div>
       <div class="briefing-meta">
-        <span class="briefing-confidence" style="color:${b.system_confidence>.7?'#10b981':b.system_confidence>.4?'#eab308':'#f43f5e'}">${(b.system_confidence*100).toFixed(0)}% confidence</span>
-        <span>Zones needing attention: <strong>${(b.zones_requiring_attention||[]).join(', ')||'None'}</strong></span>
+        <span class="briefing-confidence" style="color:${b.system_confidence>.7?'var(--emerald)':b.system_confidence>.4?'var(--gold)':'var(--magenta)'}">${(b.system_confidence*100).toFixed(0)}% confidence</span>
+        <span>Zones needing attention: <strong style="color:var(--text);">${(b.zones_requiring_attention||[]).join(', ')||'None'}</strong></span>
       </div></div>`);
   } catch(e) { html('dash-briefing','<div class="error-msg">Briefing unavailable</div>'); }
 
@@ -285,24 +291,34 @@ async function loadDashboard() {
 
 async function loadTrendChart(zones) {
   if (!zones || !zones.length) return;
-  const topZone = zones.reduce((a, b) => (a.anomaly_score || 0) > (b.anomaly_score || 0) ? a : b);
+  html('trend-charts-container', '<div class="loader">Intercepting signals from all zones…</div>');
   try {
-    const data = await fetchJSON(`/api/zones/${topZone.id}/readings?limit=24`);
-    if (!data.readings || data.readings.length < 2) {
-      html('trend-chart', '<div class="empty" style="padding:24px">Waiting for signal data…</div>');
-      return;
-    }
-    const readings = data.readings;
-    const labels = readings.map(r => { try { return new Date(r.timestamp).getHours()+':00'; } catch(_) { return ''; } });
-    html('trend-chart', buildAreaChart([
-      { label:'SST', data:readings.map(r=>r.sst||0), color:'#e8c95a', labels },
-      { label:'Chl-a', data:readings.map(r=>r.chlorophyll||0), color:'#2dd4bf', labels },
-      { label:'Wind', data:readings.map(r=>r.wind_speed||0), color:'#3b82f6', labels },
-    ], 900, 180));
-    const titleEl = document.querySelector('#trend-chart-panel .chart-title');
-    if (titleEl) titleEl.innerHTML = `<i data-lucide="trending-up" style="width:16px;height:16px;color:var(--gold2)"></i> Signal Trend — ${topZone.name} (24h)`;
-    if (window.lucide) lucide.createIcons();
-  } catch(e) { html('trend-chart', '<div class="empty" style="padding:24px">Chart unavailable</div>'); }
+    const results = await Promise.allSettled(zones.map(z => fetchJSON(`/api/zones/${z.id}/readings?limit=24`)));
+    
+    let htmlContent = '';
+    zones.forEach((z, idx) => {
+      const res = results[idx];
+      if (res.status === 'fulfilled' && res.value.readings && res.value.readings.length > 2) {
+        const readings = res.value.readings;
+        const labels = readings.map(r => { try { return new Date(r.timestamp).getHours()+':00'; } catch(_) { return ''; } });
+        
+        const chartSVG = buildAreaChart([
+          { label:'SST', data:readings.map(r=>r.sst||0), color:'#ffb800', labels },
+          { label:'Chl-a', data:readings.map(r=>r.chlorophyll||0), color:'#00f0ff', labels },
+          { label:'Wind', data:readings.map(r=>r.wind_speed||0), color:'#7c5cfc', labels },
+        ], 600, 140);
+        
+        htmlContent += `<div class="trend-item">
+          <div class="trend-item-head">
+            <strong>${z.name}</strong> <span>Anomaly: <span style="color:${z.anomaly_score>0.5?'var(--magenta)':z.anomaly_score>0.2?'var(--gold)':'var(--emerald)'}">${z.anomaly_score.toFixed(3)}</span></span>
+          </div>
+          ${chartSVG}
+        </div>`;
+      }
+    });
+
+    html('trend-charts-container', htmlContent || '<div class="empty">No trend data available</div>');
+  } catch(e) { html('trend-charts-container', '<div class="empty" style="padding:24px">Charts unavailable</div>'); }
 }
 
 // ═══════════════════════════════════════════════════
@@ -436,9 +452,10 @@ async function loadZoneDetail(zoneId) {
   out += '<div class="zd-grid">';
 
   // Root Cause
-  if (rootcause && rootcause.root_causes) {
+  if (rootcause && (rootcause.root_causes?.length || rootcause.primary_cause)) {
     out += `<div class="zd-section"><h3>🔍 Root Cause Analysis</h3>`;
-    rootcause.root_causes.forEach(rc => {
+    const causes = rootcause.root_causes?.length ? rootcause.root_causes : [rootcause.primary_cause];
+    causes.forEach(rc => {
       const pct = (rc.confidence*100).toFixed(0);
       out += `<div class="rc-bar-row"><div class="rc-bar-head"><span>${rc.cause}</span><span style="color:var(--teal)">${pct}%</span></div>
         <div class="rc-bar"><div class="rc-bar-fill" style="width:${pct}%;background:linear-gradient(90deg,rgba(45,212,191,0.2),var(--teal))"></div></div>
@@ -723,7 +740,7 @@ async function loadLogs() {
 document.addEventListener('DOMContentLoaded', () => {
   if (window.lucide) lucide.createIcons();
 
-  document.querySelectorAll('.nav-tab').forEach(tab => {
+  document.querySelectorAll('.sb-item').forEach(tab => {
     tab.addEventListener('click', () => switchTab(tab.dataset.tab));
   });
 
