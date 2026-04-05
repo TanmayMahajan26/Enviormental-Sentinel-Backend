@@ -6,7 +6,6 @@
   <title>EcoSentinel — AI Environmental Intelligence</title>
   <meta name="description" content="Autonomous geospatial intelligence engine for Indian coastal monitoring with 9 AI agents.">
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌍</text></svg>">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/static/style.css">
   <script src="https://unpkg.com/lucide@latest"></script>
 </head>
@@ -25,6 +24,7 @@
         <button class="nav-tab" data-tab="logs"><i data-lucide="terminal"></i><span>Agent Logs</span></button>
       </div>
       <div class="nav-right">
+        <a href="/" class="nav-api-btn"><i data-lucide="home"></i><span>Home</span></a>
         <a href="/docs" target="_blank" class="nav-api-btn"><i data-lucide="code-2"></i><span>API Docs</span></a>
         <div class="nav-status" id="nav-status"><span class="status-dot offline"></span><span class="status-text">Connecting…</span></div>
       </div>
@@ -38,8 +38,36 @@
     <section id="page-dashboard" class="page active">
       <div class="page-head"><h1>🛡️ Mission Control</h1><p>Real-time coastal intelligence across 8 Indian zones</p></div>
       <div class="stats-row" id="stats-row"></div>
+
+      <!-- SIGNAL OVERVIEW GAUGES -->
+      <div class="chart-panel" id="signal-gauges-panel" style="margin-bottom:20px;">
+        <div class="chart-header">
+          <div class="chart-title"><i data-lucide="gauge" style="width:16px;height:16px;color:var(--teal)"></i> System Health Overview</div>
+          <div class="chart-legend">
+            <div class="legend-item"><span class="legend-dot" style="background:var(--teal)"></span>Optimal</div>
+            <div class="legend-item"><span class="legend-dot" style="background:var(--high)"></span>Warning</div>
+            <div class="legend-item"><span class="legend-dot" style="background:var(--critical)"></span>Critical</div>
+          </div>
+        </div>
+        <div class="gauge-container" id="system-gauges"></div>
+      </div>
+
       <div class="section-head"><h2>🗺️ Coastal Zones</h2><button class="btn-sm" onclick="loadDashboard()"><i data-lucide="refresh-cw"></i> Refresh</button></div>
       <div class="zone-grid" id="zone-grid"><div class="loader">Loading zones…</div></div>
+
+      <!-- SIGNAL TREND CHART -->
+      <div class="chart-panel" style="margin-top:20px;" id="trend-chart-panel">
+        <div class="chart-header">
+          <div class="chart-title"><i data-lucide="trending-up" style="width:16px;height:16px;color:var(--gold2)"></i> Signal Trend — Latest 24h (Highest Risk Zone)</div>
+          <div class="chart-legend">
+            <div class="legend-item"><span class="legend-dot" style="background:var(--gold2)"></span>SST</div>
+            <div class="legend-item"><span class="legend-dot" style="background:var(--teal)"></span>Chlorophyll</div>
+            <div class="legend-item"><span class="legend-dot" style="background:var(--info)"></span>Wind</div>
+          </div>
+        </div>
+        <div class="chart-body" id="trend-chart"></div>
+      </div>
+
       <div class="split-row">
         <div class="split-left">
           <div class="section-head"><h2>🚨 Priority Alerts</h2></div>
